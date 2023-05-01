@@ -1,0 +1,3827 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/": {
+            "get": {
+                "operationId": "App_root",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/events": {
+            "post": {
+                "operationId": "Events_create",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateEventDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Event"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "events"
+                ]
+            },
+            "get": {
+                "operationId": "Events_findAll",
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Event"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "events"
+                ]
+            }
+        },
+        "/events/query": {
+            "post": {
+                "operationId": "Events_findAllFiltered",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FindAllEventsDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Event"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "events"
+                ]
+            }
+        },
+        "/events/{id}": {
+            "get": {
+                "operationId": "Events_findOne",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Event"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "events"
+                ]
+            },
+            "delete": {
+                "operationId": "Events_remove",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Event"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "events"
+                ]
+            }
+        },
+        "/products": {
+            "post": {
+                "operationId": "Products_create",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "products"
+                ]
+            },
+            "get": {
+                "operationId": "Products_findAll",
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "products"
+                ]
+            }
+        },
+        "/products/uuid/{id}/user": {
+            "get": {
+                "operationId": "Products_findOneByUuidIncludeUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "products"
+                ]
+            }
+        },
+        "/products/qr-uuid/{id}/user": {
+            "get": {
+                "operationId": "Products_findOneByQrUuidIncludeUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "products"
+                ]
+            }
+        },
+        "/products/{id}/user": {
+            "get": {
+                "operationId": "Products_findOneIncludeUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "products"
+                ]
+            }
+        },
+        "/products/qr-uuid/{id}": {
+            "get": {
+                "operationId": "Products_findOneByQrUuid",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "products"
+                ]
+            }
+        },
+        "/products/uuid/{id}": {
+            "get": {
+                "operationId": "Products_findOneByUuid",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "products"
+                ]
+            }
+        },
+        "/products/{id}": {
+            "get": {
+                "operationId": "Products_findOne",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "products"
+                ]
+            },
+            "delete": {
+                "operationId": "Products_remove",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "products"
+                ]
+            }
+        },
+        "/users/{id}/flag-report": {
+            "post": {
+                "operationId": "Users_report",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReportUserDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users": {
+            "post": {
+                "operationId": "Users_create",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateUserDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            },
+            "get": {
+                "operationId": "Users_findAll",
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/test": {
+            "get": {
+                "operationId": "Users_test",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "operationId": "Users_findOne",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            },
+            "patch": {
+                "operationId": "Users_update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/username-available": {
+            "post": {
+                "operationId": "Users_isUsernameAvailable",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "IsUsernameAvailableDto",
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "username"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "IsUsernameAvailableResponse",
+                                    "type": "object",
+                                    "properties": {
+                                        "available": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": [
+                                        "available"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/{id}/vcard": {
+            "get": {
+                "operationId": "Users_getVCard",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "device",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "vcard": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "text/x-vcard": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/fireUID/{id}": {
+            "get": {
+                "operationId": "Users_findOneByFirebaseUid",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/username/{username}": {
+            "get": {
+                "operationId": "Users_findOneByUsername",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/fireUID/{id}/include-all": {
+            "get": {
+                "operationId": "Users_findOneIncludeAllByFirebaseUid",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/{uid}": {
+            "delete": {
+                "operationId": "Users_delete",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/{id}/fcm-token": {
+            "patch": {
+                "operationId": "Users_addFcmToken",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "token"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/{id}/tags": {
+            "post": {
+                "operationId": "Users_createTag",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateTagDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            },
+            "patch": {
+                "operationId": "Users_updateTag",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateTagDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/{id}/tags/{tag}/delete": {
+            "delete": {
+                "operationId": "Users_deleteTag",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tag",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/{id}/events/{event}/book": {
+            "patch": {
+                "operationId": "Users_bookEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "event",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/users/{uid}/products/link": {
+            "patch": {
+                "operationId": "UserProducts_linkProduct",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LinkProductDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "user-products"
+                ]
+            }
+        },
+        "/users/{uid}/products/unlink": {
+            "patch": {
+                "operationId": "UserProducts_unlinkProduct",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LinkProductDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-products"
+                ]
+            }
+        },
+        "/users/{uid}/connections": {
+            "get": {
+                "operationId": "UserConnections_getUserConnections",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id-type",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserConnectionsDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "user-connections"
+                ]
+            }
+        },
+        "/users/{uid}/connections/connect/{receiver}": {
+            "patch": {
+                "operationId": "UserConnections_connectWith",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "receiver",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-connections"
+                ]
+            }
+        },
+        "/users/{uid}/connections/{connectionId}/disconnect": {
+            "patch": {
+                "operationId": "UserConnections_endConnection",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "connectionId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-connections"
+                ]
+            }
+        },
+        "/users/{uid}/connections/{connectionId}/reject": {
+            "patch": {
+                "operationId": "UserConnections_rejectConnectionRequest",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "connectionId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-connections"
+                ]
+            }
+        },
+        "/users/{uid}/connections/{connectionId}/accept": {
+            "patch": {
+                "operationId": "UserConnections_acceptConnectionRequest",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "connectionId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-connections"
+                ]
+            }
+        },
+        "/users/{uid}/connections/{connectionId}/seen": {
+            "patch": {
+                "operationId": "UserConnections_seeConnection",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "connectionId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-connections"
+                ]
+            }
+        },
+        "/users/{uid}/connections/{connectionId}/block": {
+            "patch": {
+                "operationId": "UserConnections_blockConnection",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "connectionId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-connections"
+                ]
+            }
+        },
+        "/users/{uid}/connections/{connectionId}/unblock": {
+            "patch": {
+                "operationId": "UserConnections_unblockConnection",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "connectionId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-connections"
+                ]
+            }
+        },
+        "/users/{uid}/connections/{connectionId}": {
+            "delete": {
+                "operationId": "UserConnections_cancelConnection",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "connectionId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-connections"
+                ]
+            }
+        },
+        "/users/{uid}/apps/custom/app": {
+            "post": {
+                "operationId": "UserApps_addCustomApp",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddCustomAppDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            },
+            "put": {
+                "operationId": "UserApps_editCustomApp",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditCustomAppDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/users/{uid}/apps/custom/{categoryId}/app/{appId}/enable": {
+            "patch": {
+                "operationId": "UserApps_enableCustomApp",
+                "summary": "",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "appId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "categoryId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/users/{uid}/apps/custom/{categoryId}/app/{appId}/disable": {
+            "patch": {
+                "operationId": "UserApps_disableCustomApp",
+                "summary": "",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "appId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "categoryId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/users/{uid}/apps/custom/{categoryId}/app/{appId}": {
+            "delete": {
+                "operationId": "UserApps_deleteCustomApp",
+                "summary": "",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "appId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "categoryId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/users/{uid}/apps/custom": {
+            "post": {
+                "operationId": "UserApps_addCustomAppCategory",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddCustomAppsCategoryDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            },
+            "put": {
+                "operationId": "UserApps_editCustomAppCategory",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditCustomAppsCategoryDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/users/{uid}/apps/custom/{categoryId}/disable": {
+            "patch": {
+                "operationId": "UserApps_disableCustomAppCategory",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "categoryId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/users/{uid}/apps/custom/{categoryId}/enable": {
+            "patch": {
+                "operationId": "UserApps_enableCustomAppCategory",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "categoryId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/users/{uid}/apps/custom/{categoryId}": {
+            "delete": {
+                "operationId": "UserApps_deleteCustomAppCategory",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "categoryId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/users/{uid}/apps/{app}/add": {
+            "patch": {
+                "operationId": "UserApps_addAppOld",
+                "summary": "",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "app",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FACEBOOK",
+                                "WHATSAPP",
+                                "TWITTER",
+                                "INSTAGRAM",
+                                "TIKTOK",
+                                "SNAPCHAT",
+                                "AMAZON",
+                                "SPOTIFY",
+                                "YOUTUBE",
+                                "LINKEDIN",
+                                "SOUNDCLOUD",
+                                "PAYPAL",
+                                "CUSTOM"
+                            ]
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddAppDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/users/{uid}/apps/{app}": {
+            "post": {
+                "operationId": "UserApps_addApp",
+                "summary": "",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "app",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FACEBOOK",
+                                "WHATSAPP",
+                                "TWITTER",
+                                "INSTAGRAM",
+                                "TIKTOK",
+                                "SNAPCHAT",
+                                "AMAZON",
+                                "SPOTIFY",
+                                "YOUTUBE",
+                                "LINKEDIN",
+                                "SOUNDCLOUD",
+                                "PAYPAL",
+                                "CUSTOM"
+                            ]
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddAppDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            },
+            "delete": {
+                "operationId": "UserApps_deleteApp",
+                "summary": "",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "app",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FACEBOOK",
+                                "WHATSAPP",
+                                "TWITTER",
+                                "INSTAGRAM",
+                                "TIKTOK",
+                                "SNAPCHAT",
+                                "AMAZON",
+                                "SPOTIFY",
+                                "YOUTUBE",
+                                "LINKEDIN",
+                                "SOUNDCLOUD",
+                                "PAYPAL",
+                                "CUSTOM"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/users/{uid}/apps/{app}/enable": {
+            "patch": {
+                "operationId": "UserApps_enableApp",
+                "summary": "",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "app",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FACEBOOK",
+                                "WHATSAPP",
+                                "TWITTER",
+                                "INSTAGRAM",
+                                "TIKTOK",
+                                "SNAPCHAT",
+                                "AMAZON",
+                                "SPOTIFY",
+                                "YOUTUBE",
+                                "LINKEDIN",
+                                "SOUNDCLOUD",
+                                "PAYPAL",
+                                "CUSTOM"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/users/{uid}/apps/{app}/disable": {
+            "patch": {
+                "operationId": "UserApps_disableApp",
+                "summary": "",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "app",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FACEBOOK",
+                                "WHATSAPP",
+                                "TWITTER",
+                                "INSTAGRAM",
+                                "TIKTOK",
+                                "SNAPCHAT",
+                                "AMAZON",
+                                "SPOTIFY",
+                                "YOUTUBE",
+                                "LINKEDIN",
+                                "SOUNDCLOUD",
+                                "PAYPAL",
+                                "CUSTOM"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-apps"
+                ]
+            }
+        },
+        "/v2/users/{uid}/links": {
+            "post": {
+                "operationId": "UserLinks_addLink",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddLinkDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-links"
+                ]
+            },
+            "put": {
+                "operationId": "UserLinks_editLink",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditLinkDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-links"
+                ]
+            }
+        },
+        "/v2/users/{uid}/links/{linkId}/enable": {
+            "patch": {
+                "operationId": "UserLinks_enableLink",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "linkId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "CategoryId",
+                                "type": "object",
+                                "properties": {
+                                    "categoryId": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-links"
+                ]
+            }
+        },
+        "/v2/users/{uid}/links/{linkId}/disable": {
+            "patch": {
+                "operationId": "UserLinks_disableLink",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "linkId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "CategoryId",
+                                "type": "object",
+                                "properties": {
+                                    "categoryId": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-links"
+                ]
+            }
+        },
+        "/v2/users/{uid}/links/{linkId}": {
+            "delete": {
+                "operationId": "UserLinks_deleteLink",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "linkId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "CategoryId",
+                                "type": "object",
+                                "properties": {
+                                    "categoryId": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-links"
+                ]
+            }
+        },
+        "/users/{uid}/links": {
+            "post": {
+                "operationId": "UserLinksControllerV1_addLink",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddLinkDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-links-v1"
+                ]
+            },
+            "put": {
+                "operationId": "UserLinksControllerV1_editLink",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditLinkDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-links-v1"
+                ]
+            }
+        },
+        "/users/{uid}/links/{appId}/enable": {
+            "patch": {
+                "operationId": "UserLinksControllerV1_enableLink",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "appId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "CategoryId",
+                                "type": "object",
+                                "properties": {
+                                    "categoryId": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-links-v1"
+                ]
+            }
+        },
+        "/users/{uid}/links/{appId}/disable": {
+            "patch": {
+                "operationId": "UserLinksControllerV1_disableLink",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "appId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "CategoryId",
+                                "type": "object",
+                                "properties": {
+                                    "categoryId": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-links-v1"
+                ]
+            }
+        },
+        "/users/{uid}/links/{appId}": {
+            "delete": {
+                "operationId": "UserLinksControllerV1_deleteLink",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "appId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "CategoryId",
+                                "type": "object",
+                                "properties": {
+                                    "categoryId": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-links-v1"
+                ]
+            }
+        },
+        "/users/{uid}/link-categories": {
+            "post": {
+                "operationId": "UserLinkCategories_addLinksCategory",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddLinksCategoryDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-link-categories"
+                ]
+            },
+            "put": {
+                "operationId": "UserLinkCategories_editLinksCategoryV1",
+                "summary": "",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditCustomAppsCategoryDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-link-categories"
+                ]
+            }
+        },
+        "/v2/users/{uid}/link-categories/{categoryId}": {
+            "put": {
+                "operationId": "UserLinkCategories_editLinksCategory",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "categoryId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EditLinksCategoryDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-link-categories"
+                ]
+            }
+        },
+        "/users/{uid}/link-categories/{categoryId}/disable": {
+            "patch": {
+                "operationId": "UserLinkCategories_disableLinksCategory",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "categoryId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-link-categories"
+                ]
+            }
+        },
+        "/users/{uid}/link-categories/{categoryId}/enable": {
+            "patch": {
+                "operationId": "UserLinkCategories_enableLinksCategory",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "categoryId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-link-categories"
+                ]
+            }
+        },
+        "/users/{uid}/link-categories/{categoryId}": {
+            "delete": {
+                "operationId": "UserLinkCategories_deleteLinksCategory",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "categoryId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-link-categories"
+                ]
+            }
+        },
+        "/users/{uid}/link-categories/reorder": {
+            "put": {
+                "operationId": "UserLinkCategories_reorderLinksCategory",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "ReorderLinksCategoryRequestBody",
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "user-link-categories"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "API",
+        "description": "API DOCS",
+        "version": "1.0",
+        "contact": {}
+    },
+    "tags": [],
+    "servers": [
+        {
+            "url": "http://localhost:3000"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "type": "http"
+            }
+        },
+        "schemas": {
+            "GeoPoint": {
+                "type": "object",
+                "properties": {
+                    "lat": {
+                        "type": "number"
+                    },
+                    "lng": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "lat",
+                    "lng"
+                ]
+            },
+            "CreateEventDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "date": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "creatorId": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "activated": {
+                        "type": "boolean"
+                    },
+                    "duration": {
+                        "type": "number"
+                    },
+                    "isFeatured": {
+                        "type": "boolean"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "eventUrl": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "$ref": "#/components/schemas/GeoPoint"
+                    },
+                    "address": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "date",
+                    "name",
+                    "creatorId"
+                ]
+            },
+            "Link": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "icon": {
+                        "type": "boolean"
+                    },
+                    "labels": {
+                        "type": "object"
+                    }
+                }
+            },
+            "LinkCategory": {
+                "type": "object",
+                "properties": {
+                    "index": {
+                        "type": "number"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "labels": {
+                        "type": "object"
+                    },
+                    "links": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "WorkInfo": {
+                "type": "object",
+                "properties": {
+                    "companyName": {
+                        "type": "string"
+                    },
+                    "position": {
+                        "type": "string"
+                    },
+                    "companyUrl": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Connection": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "responseAt": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "seen": {
+                        "type": "boolean"
+                    },
+                    "seenAt": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "response": {
+                        "type": "string"
+                    },
+                    "initiatedByID": {
+                        "type": "string"
+                    },
+                    "receivedByID": {
+                        "type": "string"
+                    },
+                    "blockerID": {
+                        "type": "string"
+                    },
+                    "initiatedBy": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "receivedBy": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "blocker": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                }
+            },
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "type": "string"
+                    },
+                    "qrUuid": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "CARD",
+                            "STICKER",
+                            "KEYCHAIN"
+                        ]
+                    },
+                    "activated": {
+                        "type": "boolean"
+                    },
+                    "ownerID": {
+                        "type": "string"
+                    },
+                    "owner": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                },
+                "required": [
+                    "uuid",
+                    "qrUuid"
+                ]
+            },
+            "ControlledValue": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "value",
+                    "enabled"
+                ]
+            },
+            "BusinessDetails": {
+                "type": "object",
+                "properties": {
+                    "businessType": {
+                        "type": "string"
+                    },
+                    "googleMapsUrl": {
+                        "type": "string"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "bio": {
+                        "type": "string"
+                    },
+                    "attendedEvents": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "connectionsInitiated": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Connection"
+                        }
+                    },
+                    "connectionsReceived": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Connection"
+                        }
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Product"
+                        }
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "firebaseUID": {
+                        "type": "string"
+                    },
+                    "fullName": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "primaryEmail": {
+                        "type": "string"
+                    },
+                    "primaryPhone": {
+                        "type": "string"
+                    },
+                    "primaryPhoneEnabled": {
+                        "type": "boolean"
+                    },
+                    "primaryEmailEnabled": {
+                        "type": "boolean"
+                    },
+                    "emails": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ControlledValue"
+                        }
+                    },
+                    "phones": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ControlledValue"
+                        }
+                    },
+                    "userType": {
+                        "type": "string"
+                    },
+                    "birthday": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "businessDetails": {
+                        "$ref": "#/components/schemas/BusinessDetails"
+                    },
+                    "links": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/Link"
+                        }
+                    },
+                    "linksCategories": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/LinkCategory"
+                        }
+                    },
+                    "tags": {
+                        "type": "object"
+                    },
+                    "fcmTokens": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "workInfo": {
+                        "$ref": "#/components/schemas/WorkInfo"
+                    },
+                    "userAccentColor": {
+                        "type": "string"
+                    },
+                    "documentVersion": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Event": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "date": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "activated": {
+                        "type": "boolean"
+                    },
+                    "creatorID": {
+                        "type": "string"
+                    },
+                    "creator": {
+                        "$ref": "#/components/schemas/EventOrganizer"
+                    },
+                    "isFeatured": {
+                        "type": "boolean"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "duration": {
+                        "type": "number"
+                    },
+                    "eventUrl": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "$ref": "#/components/schemas/GeoPoint"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "attendees": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EventAttendance"
+                        }
+                    },
+                    "_count": {
+                        "type": "object"
+                    }
+                }
+            },
+            "EventOrganizer": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "fullName": {
+                        "type": "string"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "eventsCreated": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Event"
+                        }
+                    }
+                }
+            },
+            "EventAttendance": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "date": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "activated": {
+                        "type": "boolean"
+                    },
+                    "creatorID": {
+                        "type": "string"
+                    },
+                    "created": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "eventId": {
+                        "type": "string"
+                    },
+                    "attendeeID": {
+                        "type": "string"
+                    },
+                    "event": {
+                        "$ref": "#/components/schemas/Event"
+                    },
+                    "attendee": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                }
+            },
+            "PrismaNestedDateTimeNullableFilter": {
+                "type": "object",
+                "properties": {
+                    "equals": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "in": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "notIn": {
+                        "type": "array",
+                        "items": {
+                            "format": "date-time",
+                            "type": "string"
+                        }
+                    },
+                    "lt": {
+                        "type": "array",
+                        "items": {
+                            "format": "date-time",
+                            "type": "string"
+                        }
+                    },
+                    "lte": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "gt": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "gte": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "not": {
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PrismaNestedDateTimeNullableFilter"
+                            }
+                        ]
+                    },
+                    "isSet": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PrismaDateTimeNullableFilter": {
+                "type": "object",
+                "properties": {
+                    "equals": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "in": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "notIn": {
+                        "type": "array",
+                        "items": {
+                            "format": "date-time",
+                            "type": "string"
+                        }
+                    },
+                    "lt": {
+                        "type": "array",
+                        "items": {
+                            "format": "date-time",
+                            "type": "string"
+                        }
+                    },
+                    "lte": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "gt": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "gte": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "not": {
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PrismaNestedDateTimeNullableFilter"
+                            }
+                        ]
+                    },
+                    "isSet": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PrismaNestedStringFilter": {
+                "type": "object",
+                "properties": {
+                    "equals": {
+                        "type": "string"
+                    },
+                    "in": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "notIn": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "lt": {
+                        "type": "string"
+                    },
+                    "lte": {
+                        "type": "string"
+                    },
+                    "gt": {
+                        "type": "string"
+                    },
+                    "gte": {
+                        "type": "string"
+                    },
+                    "contains": {
+                        "type": "string"
+                    },
+                    "startsWith": {
+                        "type": "string"
+                    },
+                    "endsWith": {
+                        "type": "string"
+                    },
+                    "not": {
+                        "oneOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PrismaNestedStringFilter"
+                            }
+                        ]
+                    }
+                }
+            },
+            "PrismaStringFilter": {
+                "type": "object",
+                "properties": {
+                    "equals": {
+                        "type": "string"
+                    },
+                    "in": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "notIn": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "lt": {
+                        "type": "string"
+                    },
+                    "lte": {
+                        "type": "string"
+                    },
+                    "gt": {
+                        "type": "string"
+                    },
+                    "gte": {
+                        "type": "string"
+                    },
+                    "contains": {
+                        "type": "string"
+                    },
+                    "startsWith": {
+                        "type": "string"
+                    },
+                    "endsWith": {
+                        "type": "string"
+                    },
+                    "not": {
+                        "oneOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PrismaNestedStringFilter"
+                            }
+                        ]
+                    }
+                }
+            },
+            "PrismaStringNullableListFilter": {
+                "type": "object",
+                "properties": {
+                    "equals": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "has": {
+                        "type": "string"
+                    },
+                    "hasEvery": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "hasSome": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "isEmpty": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "FindAllEventsDto": {
+                "type": "object",
+                "properties": {
+                    "date": {
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PrismaDateTimeNullableFilter"
+                            }
+                        ]
+                    },
+                    "activated": {
+                        "type": "boolean"
+                    },
+                    "creatorID": {
+                        "oneOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PrismaStringFilter"
+                            }
+                        ]
+                    },
+                    "isFeatured": {
+                        "type": "boolean"
+                    },
+                    "tags": {
+                        "$ref": "#/components/schemas/PrismaStringNullableListFilter"
+                    },
+                    "category": {
+                        "$ref": "#/components/schemas/PrismaStringFilter"
+                    }
+                }
+            },
+            "CreateProductDto": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string"
+                    },
+                    "qrUuid": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "CARD",
+                            "STICKER",
+                            "KEYCHAIN"
+                        ]
+                    }
+                },
+                "required": [
+                    "uuid",
+                    "qrUuid",
+                    "type"
+                ]
+            },
+            "FlagReportState": {
+                "type": "string",
+                "enum": [
+                    "PENDING",
+                    "RESOLVED"
+                ]
+            },
+            "ReportUserDto": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "reportingUserId": {
+                        "type": "string"
+                    },
+                    "reportedUserId": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "$ref": "#/components/schemas/FlagReportState"
+                    }
+                },
+                "required": [
+                    "title",
+                    "description",
+                    "reportingUserId",
+                    "reportedUserId"
+                ]
+            },
+            "CreateUserDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "firebaseUID": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "fullName": {
+                        "type": "string"
+                    },
+                    "userType": {
+                        "type": "string",
+                        "enum": [
+                            "USER",
+                            "ADMIN",
+                            "CUSTOMER_SERVICE",
+                            "EVENT_ORGANIZER",
+                            "BUSINESS_OWNER"
+                        ]
+                    },
+                    "birthday": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "businessDetails": {
+                        "$ref": "#/components/schemas/BusinessDetails"
+                    },
+                    "bio": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "firebaseUID"
+                ]
+            },
+            "UpdateUserDto": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "firebaseUID": {
+                        "type": "string"
+                    },
+                    "fullName": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "bio": {
+                        "type": "string"
+                    },
+                    "primaryEmailEnabled": {
+                        "type": "boolean"
+                    },
+                    "primaryEmail": {
+                        "type": "string"
+                    },
+                    "primaryPhoneEnabled": {
+                        "type": "boolean"
+                    },
+                    "primaryPhone": {
+                        "type": "string"
+                    },
+                    "emails": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ControlledValue"
+                        }
+                    },
+                    "phones": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ControlledValue"
+                        }
+                    },
+                    "userType": {
+                        "type": "string",
+                        "enum": [
+                            "USER",
+                            "ADMIN",
+                            "CUSTOMER_SERVICE",
+                            "EVENT_ORGANIZER",
+                            "BUSINESS_OWNER"
+                        ]
+                    },
+                    "birthday": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "workInfo": {
+                        "$ref": "#/components/schemas/WorkInfo"
+                    },
+                    "userAccentColor": {
+                        "type": "string"
+                    },
+                    "businessDetails": {
+                        "$ref": "#/components/schemas/BusinessDetails"
+                    },
+                    "address": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CreateTagDto": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "name",
+                    "ids"
+                ]
+            },
+            "UpdateTagDto": {
+                "type": "object",
+                "properties": {
+                    "originalName": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "originalName",
+                    "name",
+                    "ids"
+                ]
+            },
+            "LinkProductDto": {
+                "type": "object",
+                "properties": {
+                    "productUuid": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "productUuid"
+                ]
+            },
+            "GetUserConnectionsDto": {
+                "type": "object",
+                "properties": {
+                    "connectionsInitiated": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Connection"
+                        }
+                    },
+                    "connectionsReceived": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Connection"
+                        }
+                    }
+                }
+            },
+            "AddCustomAppDto": {
+                "type": "object",
+                "properties": {
+                    "appId": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "boolean"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "categoryId": {
+                        "type": "string"
+                    },
+                    "labels": {
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "appId",
+                    "value",
+                    "categoryId",
+                    "labels"
+                ]
+            },
+            "EditCustomAppDto": {
+                "type": "object",
+                "properties": {
+                    "categoryId": {
+                        "type": "string"
+                    },
+                    "appId": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "boolean"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "labels": {
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "categoryId",
+                    "appId"
+                ]
+            },
+            "AddCustomAppsCategoryDto": {
+                "type": "object",
+                "properties": {
+                    "categoryId": {
+                        "type": "string"
+                    },
+                    "labels": {
+                        "type": "object"
+                    },
+                    "index": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "categoryId",
+                    "labels"
+                ]
+            },
+            "EditCustomAppsCategoryDto": {
+                "type": "object",
+                "properties": {
+                    "categoryId": {
+                        "type": "string"
+                    },
+                    "labels": {
+                        "type": "object"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "categoryId"
+                ]
+            },
+            "AddAppDto": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "labels": {
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "value"
+                ]
+            },
+            "AddLinkDto": {
+                "type": "object",
+                "properties": {
+                    "appId": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "categoryId": {
+                        "type": "string"
+                    },
+                    "labels": {
+                        "type": "object"
+                    },
+                    "icon": {
+                        "type": "boolean"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "appId",
+                    "value",
+                    "type",
+                    "categoryId"
+                ]
+            },
+            "EditLinkDto": {
+                "type": "object",
+                "properties": {
+                    "appId": {
+                        "type": "string"
+                    },
+                    "categoryId": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "boolean"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "labels": {
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "appId",
+                    "categoryId"
+                ]
+            },
+            "AddLinksCategoryDto": {
+                "type": "object",
+                "properties": {
+                    "categoryId": {
+                        "type": "string"
+                    },
+                    "labels": {
+                        "type": "object"
+                    },
+                    "index": {
+                        "type": "number"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "categoryId",
+                    "labels"
+                ]
+            },
+            "EditLinksCategoryDto": {
+                "type": "object",
+                "properties": {
+                    "categoryId": {
+                        "type": "string"
+                    },
+                    "labels": {
+                        "type": "object"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "index": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "categoryId"
+                ]
+            }
+        }
+    }
+}

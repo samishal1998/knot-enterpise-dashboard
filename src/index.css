@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  src: url(/fonts/raleway/variable/normal.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  src: url(/fonts/raleway/variable/italic.ttf) format('ttf');
+}
+:root {
+  font-family: Raleway,Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+#root {
+  margin: 0;
+  height: 100%;
+}
+
+:root {
+  margin: 0;
+  height: 100%;
+}
+
+.show-open-hide-closed{
+  transition:  5000ms ease-in-out;
+  -moz-transition: 5000ms ease-in-out;
+  -webkit-transition: 5000ms ease-in-out;
+  display: flex;
+}
+.RaMenu-open .show-open-hide-closed{
+  transition:  1600ms ease-in-out;
+  -moz-transition: 1600ms ease-in-out;
+  -webkit-transition: 1600ms ease-in-out;
+  transition-delay: 1600ms;
+  -moz-transition-delay: 1600ms;
+  -webkit-transition-delay: 1600ms;
+  display: flex;
+}
+.RaMenu-closed .show-open-hide-closed{
+  transition:  1600ms ease-in-out;
+  transition-delay: 1600ms;
+  -moz-transition-delay: 1600ms;
+  -webkit-transition-delay: 1600ms;
+  -moz-transition: 1600ms ease-in-out;
+  -webkit-transition: 1600ms ease-in-out;
+  display: none;
+
+}
