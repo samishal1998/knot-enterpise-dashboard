@@ -5,5 +5,12 @@
  * API DOCS
  * OpenAPI spec version: 1.0
  */
+import type { UpdateEnterpriseDtoMetaFieldsDeclarations } from './updateEnterpriseDtoMetaFieldsDeclarations';
 
-export interface UpdateEnterpriseDto { [key: string]: any }
+export interface UpdateEnterpriseDto {
+  name?: string;
+  url?: string;
+  logo?: string;
+  cover?: string;
+  metaFieldsDeclarations?: UpdateEnterpriseDtoMetaFieldsDeclarations;
+}

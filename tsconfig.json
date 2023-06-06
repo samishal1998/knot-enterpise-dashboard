@@ -8,6 +8,7 @@
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "alwaysStrict": false,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -16,6 +17,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitAny": false,
+    "strictFunctionTypes": false,
     "baseUrl": ".",
     "paths": {
       "@pages/*": ["src/pages/*"],
@@ -24,7 +26,7 @@
       "@utils/*": ["src/utils/*"],
       "@data/*": ["src/data/*"],
       "@hooks/*": ["src/hooks/*"],
-      "@assets/*": ["src/assets/*"],
+      "@assets/*": ["src/assets/*"]
     }
   },
   "include": ["src"],

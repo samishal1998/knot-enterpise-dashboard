@@ -27,7 +27,9 @@ import type {
   CreateEnterpriseDto,
   Enterprise,
   EnterprisesFindOneParams,
-  UpdateEnterpriseDto
+  UpdateEnterpriseDto,
+  User,
+  CreateProfileDto
 } from '.././models'
 
 
@@ -65,7 +67,7 @@ export const enterprisesCreate = (
     }
     export const enterprisesFindAll = (
      options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<Enterprise[]>> => {
     return axios.get(
       `/enterprises`,options
     );
@@ -76,9 +78,9 @@ export const getEnterprisesFindAllQueryKey = () => [`/enterprises`];
 
     
 export type EnterprisesFindAllQueryResult = NonNullable<Awaited<ReturnType<typeof enterprisesFindAll>>>
-export type EnterprisesFindAllQueryError = AxiosError<Enterprise[]>
+export type EnterprisesFindAllQueryError = AxiosError<unknown>
 
-export const useEnterprisesFindAll = <TData = Awaited<ReturnType<typeof enterprisesFindAll>>, TError = AxiosError<Enterprise[]>>(
+export const useEnterprisesFindAll = <TData = Awaited<ReturnType<typeof enterprisesFindAll>>, TError = AxiosError<unknown>>(
   options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof enterprisesFindAll>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
@@ -101,7 +103,7 @@ export const useEnterprisesFindAll = <TData = Awaited<ReturnType<typeof enterpri
 export const enterprisesFindOne = (
     id: string,
     params: EnterprisesFindOneParams, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<Enterprise>> => {
     return axios.get(
       `/enterprises/${id}`,{
     ...options,
@@ -115,9 +117,9 @@ export const getEnterprisesFindOneQueryKey = (id: string,
 
     
 export type EnterprisesFindOneQueryResult = NonNullable<Awaited<ReturnType<typeof enterprisesFindOne>>>
-export type EnterprisesFindOneQueryError = AxiosError<Enterprise>
+export type EnterprisesFindOneQueryError = AxiosError<unknown>
 
-export const useEnterprisesFindOne = <TData = Awaited<ReturnType<typeof enterprisesFindOne>>, TError = AxiosError<Enterprise>>(
+export const useEnterprisesFindOne = <TData = Awaited<ReturnType<typeof enterprisesFindOne>>, TError = AxiosError<unknown>>(
  id: string,
     params: EnterprisesFindOneParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof enterprisesFindOne>>, TError, TData>, axios?: AxiosRequestConfig}
 
@@ -141,7 +143,7 @@ export const useEnterprisesFindOne = <TData = Awaited<ReturnType<typeof enterpri
 export const enterprisesUpdate = (
     id: string,
     updateEnterpriseDto: UpdateEnterpriseDto, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<void>> => {
+ ): Promise<AxiosResponse<Enterprise>> => {
     return axios.patch(
       `/enterprises/${id}`,
       updateEnterpriseDto,options
@@ -173,7 +175,7 @@ export const enterprisesUpdate = (
     }
     export const enterprisesRemove = (
     id: string, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<void>> => {
+ ): Promise<AxiosResponse<Enterprise>> => {
     return axios.delete(
       `/enterprises/${id}`,options
     );
@@ -201,5 +203,70 @@ export const enterprisesUpdate = (
         }
 
       return useMutation<Awaited<ReturnType<typeof enterprisesRemove>>, TError, {id: string}, TContext>(mutationFn, mutationOptions)
+    }
+    export const enterprisesUnlinkEmployee = (
+    id: string,
+    employeeId: string, options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<Enterprise>> => {
+    return axios.patch(
+      `/enterprises/${id}/employees/${employeeId}/unlink`,undefined,options
+    );
+  }
+
+
+
+    export type EnterprisesUnlinkEmployeeMutationResult = NonNullable<Awaited<ReturnType<typeof enterprisesUnlinkEmployee>>>
+    
+    export type EnterprisesUnlinkEmployeeMutationError = AxiosError<unknown>
+
+    export const useEnterprisesUnlinkEmployee = <TError = AxiosError<unknown>,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof enterprisesUnlinkEmployee>>, TError,{id: string;employeeId: string}, TContext>, axios?: AxiosRequestConfig}
+) => {
+      const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof enterprisesUnlinkEmployee>>, {id: string;employeeId: string}> = (props) => {
+          const {id,employeeId} = props ?? {};
+
+          return  enterprisesUnlinkEmployee(id,employeeId,axiosOptions)
+        }
+
+      return useMutation<Awaited<ReturnType<typeof enterprisesUnlinkEmployee>>, TError, {id: string;employeeId: string}, TContext>(mutationFn, mutationOptions)
+    }
+    export const employeesCreateProfile = (
+    eid: string,
+    createProfileDto: CreateProfileDto, options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<User>> => {
+    return axios.post(
+      `/enterprises/${eid}/employees`,
+      createProfileDto,options
+    );
+  }
+
+
+
+    export type EmployeesCreateProfileMutationResult = NonNullable<Awaited<ReturnType<typeof employeesCreateProfile>>>
+    export type EmployeesCreateProfileMutationBody = CreateProfileDto
+    export type EmployeesCreateProfileMutationError = AxiosError<unknown>
+
+    export const useEmployeesCreateProfile = <TError = AxiosError<unknown>,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof employeesCreateProfile>>, TError,{eid: string;data: CreateProfileDto}, TContext>, axios?: AxiosRequestConfig}
+) => {
+      const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof employeesCreateProfile>>, {eid: string;data: CreateProfileDto}> = (props) => {
+          const {eid,data} = props ?? {};
+
+          return  employeesCreateProfile(eid,data,axiosOptions)
+        }
+
+      return useMutation<Awaited<ReturnType<typeof employeesCreateProfile>>, TError, {eid: string;data: CreateProfileDto}, TContext>(mutationFn, mutationOptions)
     }
     

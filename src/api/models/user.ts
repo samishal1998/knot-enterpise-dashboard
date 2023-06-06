@@ -16,6 +16,8 @@ import type { UserTags } from './userTags';
 import type { WorkInfo } from './workInfo';
 import type { Enterprise } from './enterprise';
 import type { EnterpriseAccess } from './enterpriseAccess';
+import type { UserUserPrefs } from './userUserPrefs';
+import type { UserExtraFields } from './userExtraFields';
 
 export interface User {
   title?: string;
@@ -46,6 +48,14 @@ export interface User {
   workInfo?: WorkInfo;
   userAccentColor?: string;
   documentVersion?: string;
+  enterpriseId?: string;
   enterprise?: Enterprise;
   enterpriseAccess?: EnterpriseAccess;
+  directLink?: string;
+  directLinkEnabled?: boolean;
+  lockedProperties?: string[];
+  userPrefs?: UserUserPrefs;
+  extraFields?: UserExtraFields;
+  createdById?: string;
+  createdByCollection?: string;
 }

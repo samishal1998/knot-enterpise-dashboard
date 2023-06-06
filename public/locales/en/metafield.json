@@ -1,0 +1,68 @@
+{
+	"pages": {
+		"declare-metafield": {
+			"title": "Define a metafield"
+		}
+	},
+	"forms": {
+		"declare-metafield": {
+			"title": "Define A Metafield",
+			"subtitle": "",
+			"fields": {
+				"name": {
+					"label": "Field Name"
+				},
+				"location": {
+					"label": "Location",
+					"options": {
+						"users": {
+							"label": "Users"
+						},
+						"products": {
+							"label": "Products"
+						}
+					}
+				},
+				"type": {
+					"label": "Field Type",
+					"options": {
+						"text": {
+							"label": "Text"
+						},
+						"tel": {
+							"label": "Phone Number"
+						},
+						"number": {
+							"label": "Numeric"
+						},
+						"email": {
+							"label": "Email"
+						},
+						"url": {
+							"label": "Url"
+						},
+						"date": {
+							"label": "Date"
+						},
+						"checkbox": {
+							"label": "Checkbox"
+						}
+					}
+				}
+			},
+			"actions": {
+				"submit": {
+					"label": "Define",
+					"request": {
+						"success": {
+							"message": "Metafield Defined Successfully"
+						},
+						"failure": {
+							"message": "Metafield Failed to be defined"
+						}
+					}
+				}
+			}
+		}
+	}
+}

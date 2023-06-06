@@ -1,0 +1,128 @@
+{
+	"toggle": {
+		"request": {
+			"failure": {
+				"message": "فشل تحديث الرابط"
+			},
+			"success": {
+				"message": "تم تحديث الرابط بنجاح"
+			}
+		}
+	},
+	"update": {
+		"request": {
+			"failure": {
+				"message": "فشل تحديث الرابط"
+			},
+			"success": {
+				"message": "تم تحديث الرابط بنجاح"
+			}
+		}
+	},
+	"delete": {
+		"request": {
+			"failure": {
+				"message": "فشل مسح الرابط"
+			},
+			"success": {
+				"message": "تم مسح الرابط بنجاح"
+			}
+		}
+	},
+	"forms": {
+		"addLink": {
+			"fields": {
+				"label": {
+					"label": "عنوان الرابط"
+				},
+				"url": {
+					"label": "الرابط"
+				}
+			},
+			"buttons": {
+				"submit": {
+					"label": "اضف الرابط"
+				}
+			},"request": {
+				"failure": {
+					"message": "فشل اضافة الرابط"
+				},
+				"success": {
+					"message": "تم اضافة الرابط بنجاح"
+				}
+			}
+		},
+		"editLink": {
+			"fields": {
+				"label": {
+					"label": "عنوان الرابط"
+				},
+				"url": {
+					"label": "الرابط"
+				}
+			},
+			"buttons": {
+				"submit": {
+					"label": "عدل الرابط"
+				}
+			},"request": {
+				"failure": {
+					"message": "فشل تحديث الرابط"
+				},
+				"success": {
+					"message": "تم تحديث الرابط بنجاح"
+				}
+			}
+		}
+	},
+	"presets": {
+		"categories": {
+			"social_media": {
+				"title": "التواصل الاجتماعي"
+			},
+			"business": {
+				"title": "المنشآت"
+			},
+			"get_inspired": {
+				"title": "اشعل حماسك"
+			},
+			"music": {
+				"title": "موسيقى"
+
+			},
+
+			"custom": {
+				"title": "مخصص"
+			}
+		},
+		"facebook": "فيسبوك",
+		"whatsapp": "واتساب",
+		"telegram": "تيليجرام",
+		"twitter": "تويتر",
+		"instagram": "انستجرام",
+		"tiktok": "تيك توك",
+		"snapchat": "سناب شات",
+		"amazon": "أمازون",
+		"linkedin": "لينكد إن",
+		"paypal": "باي بال",
+		"spotify": "سبوتيفاي",
+		"youtube": "يوتيوب",
+		"soundcloud": "ساوند كلاود",
+		"dribbble": "دريبل",
+		"behance": "بيهانس",
+		"anghami": "أنغامي",
+		"apple_music": "أبل ميوزك",
+		"youtube_music": "يوتيوب ميوزك",
+		"discord": "ديسكورد",
+		"twitch": "تويتش",
+		"messenger": "ماسنجر",
+		"pinterest": "بنترست",
+		"reddit": "رديت",
+		"pocket": "بوكيت",
+		"skype": "سكايب",
+		"slack": "سلاك",
+		"yelp": "يلب",
+		"knot": "Knot",
+		"custom": "مخصص"
+	}
+}

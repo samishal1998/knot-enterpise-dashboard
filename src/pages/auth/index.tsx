@@ -30,13 +30,14 @@ import { fireAuth } from '@utils/firebase';
 import { generatePath } from '@components/base-page.type';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import '@components/auth/loginStyles.css';
-import {useSnackbar} from "react-mui-snackbar-helper";
-import {User} from "../../api/models";
-import {EmployeesPage} from "@pages/employees";
-import {usersFindOne, usersFindOneByFirebaseUid} from "../../api/users/users";
-import '@components/auth/loginStyles.css'
+import { useSnackbar } from 'react-mui-snackbar-helper';
+import { User } from '../../api/models';
+import { EmployeesPage } from '@pages/employees';
+import { usersFindOne, usersFindOneByFirebaseUid } from '../../api/users/users';
+import '@components/auth/loginStyles.css';
 
-import  Logo from '@assets/logo.png'
+import Logo from '@assets/logo.png';
+import { signOut } from '@firebase/auth';
 export enum AuthPageOptions {
 	SIGN_UP = 'sign-up',
 	SIGN_IN = 'sign-in',
@@ -198,13 +199,28 @@ const AuthPage: BasePageType<AuthPageRouteParams> = () => {
 	};
 
 	const signInSuccessful = async (user: FireUser) => {
-		let [_user, error] = await resolve(usersFindOneByFirebaseUid(user.uid));
+		let [res, error] = await resolve(
+			usersFindOneByFirebaseUid(user.uid, {
+				include: JSON.stringify({
+					enterpriseAccess: true,
+					enterprise: true,
+				}),
+			}),
+		);
+		const _user = res?.data as User;
 
-		console.log({_user,error})
-		if (_user) showSuccessMessage(t('signedIn.success'));
-		else {
+		console.log({ _user, error });
+		if (_user) {
+			if (_user?.enterpriseAccess?.id) {
+				showSuccessMessage(t('signedIn.success'));
+			} else {
+				showErrorMessage(t('signedIn.notEnterprise'));
+				await signOut(fireAuth);
+				return;
+			}
+		} else {
 			showInfoMessage(t('if-you-are-not-signed-up-please-do-so-first'));
-			signUpSuccessful(user);
+			// signUpSuccessful(user);
 			setLoading(false);
 			return;
 		}
@@ -216,7 +232,7 @@ const AuthPage: BasePageType<AuthPageRouteParams> = () => {
 	};
 
 	const done = useCallback(async (user: User) => {
-		await navigate( '/dashboard');
+		await navigate(EmployeesPage.generatePath());
 	}, []);
 
 	const getForm = (): any => {
@@ -411,17 +427,21 @@ const AuthPage: BasePageType<AuthPageRouteParams> = () => {
 
 						<p className="text-foot mt-5 mb-2" dir={'ltr'}>
 							{' '}
-							&copy; 2021 MoQawlaty, Inc. All rights reserved.
+							&copy; 2023 Knot, Inc. All rights reserved.
 						</p>
 						<p className="text-foot" dir={'ltr'}>
 							By continuing, you are indicating that you accept our{' '}
-							<a href={'/terms'} className="firebaseui-link firebaseui-tos-link">
+							<Link
+								href={'https://myknot.co/terms-and-conditions'}
+								className="firebaseui-link firebaseui-tos-link">
 								Terms of Use
-							</a>{' '}
+							</Link>{' '}
 							,{' '}
-							<a href={'/privacy-policy'} className="firebaseui-link firebaseui-pp-link">
+							<Link
+								href={'https://myknot.co/privacy-policy'}
+								className="firebaseui-link firebaseui-pp-link">
 								Privacy Policy
-							</a>{' '}
+							</Link>{' '}
 						</p>
 					</div>
 				</div>
@@ -430,7 +450,6 @@ const AuthPage: BasePageType<AuthPageRouteParams> = () => {
 	);
 };
 AuthPage.route = '/auth/:page';
-AuthPage.subRoute = '/:page';
 AuthPage.generatePath = generatePath(AuthPage.route);
 
 export default AuthPage;

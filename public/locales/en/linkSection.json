@@ -1,0 +1,40 @@
+{
+	"actions": {
+		"addLink": {
+			"label": "Add Link",
+			"request": {
+				"failure": {
+					"message": "Failed to add the link"
+				},
+				"success": {
+					"message": "Link Added Successfully"
+				}
+			}
+		},
+		"order": {
+			"save": {
+				"label": "Save Order",
+				"request": {
+					"failure": {
+						"message": "Failed to Save Order"
+					},
+					"success": {
+						"message": "Saved Order Successfully"
+					}
+				}
+			},
+			"reset": {
+				"label": "Reset Order"
+
+			},
+			"cancel": {
+				"label": "Cancel Re-order"
+
+			}
+		}
+	},
+	"noLinks": {
+		"title": "There are no Links in this section",
+		"subtitle": "you can add links by clicking on \"Add Link\" Button"
+	}
+}

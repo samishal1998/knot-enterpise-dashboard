@@ -19,6 +19,7 @@ import type {
   MutationFunction
 } from '@tanstack/react-query'
 import type {
+  Link,
   AddLinkDto,
   EditLinkDto,
   UserLinksV1EnableLinkBody,
@@ -30,7 +31,7 @@ import type {
 export const userLinksV1AddLink = (
     uid: string,
     addLinkDto: AddLinkDto, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<void>> => {
+ ): Promise<AxiosResponse<Link>> => {
     return axios.post(
       `/users/${uid}/links`,
       addLinkDto,options

@@ -27,11 +27,13 @@ import type {
   ReportUserDto,
   User,
   CreateUserDto,
+  UsersFindOneParams,
   UpdateUserDto,
   UsersIsUsernameAvailableDefault,
   UsersIsUsernameAvailableBody,
   UsersGetVCardDefaultOne,
   UsersGetVCardParams,
+  UsersFindOneByFirebaseUidParams,
   UsersAddFcmTokenBody,
   CreateTagDto,
   UpdateTagDto
@@ -39,11 +41,11 @@ import type {
 
 
 export const usersReport = (
-    id: string,
+    uid: string,
     reportUserDto: ReportUserDto, options?: AxiosRequestConfig
  ): Promise<AxiosResponse<void>> => {
     return axios.post(
-      `/users/${id}/flag-report`,
+      `/users/${uid}/flag-report`,
       reportUserDto,options
     );
   }
@@ -56,24 +58,24 @@ export const usersReport = (
 
     export const useUsersReport = <TError = AxiosError<unknown>,
     
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usersReport>>, TError,{id: string;data: ReportUserDto}, TContext>, axios?: AxiosRequestConfig}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usersReport>>, TError,{uid: string;data: ReportUserDto}, TContext>, axios?: AxiosRequestConfig}
 ) => {
       const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof usersReport>>, {id: string;data: ReportUserDto}> = (props) => {
-          const {id,data} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof usersReport>>, {uid: string;data: ReportUserDto}> = (props) => {
+          const {uid,data} = props ?? {};
 
-          return  usersReport(id,data,axiosOptions)
+          return  usersReport(uid,data,axiosOptions)
         }
 
-      return useMutation<Awaited<ReturnType<typeof usersReport>>, TError, {id: string;data: ReportUserDto}, TContext>(mutationFn, mutationOptions)
+      return useMutation<Awaited<ReturnType<typeof usersReport>>, TError, {uid: string;data: ReportUserDto}, TContext>(mutationFn, mutationOptions)
     }
     export const usersCreate = (
     createUserDto: CreateUserDto, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<User>> => {
     return axios.post(
       `/users`,
       createUserDto,options
@@ -84,9 +86,9 @@ export const usersReport = (
 
     export type UsersCreateMutationResult = NonNullable<Awaited<ReturnType<typeof usersCreate>>>
     export type UsersCreateMutationBody = CreateUserDto
-    export type UsersCreateMutationError = AxiosError<User>
+    export type UsersCreateMutationError = AxiosError<unknown>
 
-    export const useUsersCreate = <TError = AxiosError<User>,
+    export const useUsersCreate = <TError = AxiosError<unknown>,
     
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usersCreate>>, TError,{data: CreateUserDto}, TContext>, axios?: AxiosRequestConfig}
 ) => {
@@ -105,7 +107,7 @@ export const usersReport = (
     }
     export const usersFindAll = (
      options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<User[]>> => {
     return axios.get(
       `/users`,options
     );
@@ -116,9 +118,9 @@ export const getUsersFindAllQueryKey = () => [`/users`];
 
     
 export type UsersFindAllQueryResult = NonNullable<Awaited<ReturnType<typeof usersFindAll>>>
-export type UsersFindAllQueryError = AxiosError<User[]>
+export type UsersFindAllQueryError = AxiosError<unknown>
 
-export const useUsersFindAll = <TData = Awaited<ReturnType<typeof usersFindAll>>, TError = AxiosError<User[]>>(
+export const useUsersFindAll = <TData = Awaited<ReturnType<typeof usersFindAll>>, TError = AxiosError<unknown>>(
   options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof usersFindAll>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
@@ -138,68 +140,38 @@ export const useUsersFindAll = <TData = Awaited<ReturnType<typeof usersFindAll>>
   return query;
 }
 
-export const usersTest = (
-     options?: AxiosRequestConfig
- ): Promise<AxiosResponse<void>> => {
-    return axios.get(
-      `/users/test`,options
-    );
-  }
-
-
-export const getUsersTestQueryKey = () => [`/users/test`];
-
-    
-export type UsersTestQueryResult = NonNullable<Awaited<ReturnType<typeof usersTest>>>
-export type UsersTestQueryError = AxiosError<unknown>
-
-export const useUsersTest = <TData = Awaited<ReturnType<typeof usersTest>>, TError = AxiosError<unknown>>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof usersTest>>, TError, TData>, axios?: AxiosRequestConfig}
-
-  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-
-  const {query: queryOptions, axios: axiosOptions} = options ?? {};
-
-  const queryKey = queryOptions?.queryKey ?? getUsersTestQueryKey();
-
-  
-
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof usersTest>>> = ({ signal }) => usersTest({ signal, ...axiosOptions });
-
-  const query = useQuery<Awaited<ReturnType<typeof usersTest>>, TError, TData>(queryKey, queryFn, queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
-
-  query.queryKey = queryKey;
-
-  return query;
-}
-
 export const usersFindOne = (
-    id: string, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+    id: string,
+    params?: UsersFindOneParams, options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<User>> => {
     return axios.get(
-      `/users/${id}`,options
+      `/users/${id}`,{
+    ...options,
+        params: {...params, ...options?.params},}
     );
   }
 
 
-export const getUsersFindOneQueryKey = (id: string,) => [`/users/${id}`];
+export const getUsersFindOneQueryKey = (id: string,
+    params?: UsersFindOneParams,) => [`/users/${id}`, ...(params ? [params]: [])];
 
     
 export type UsersFindOneQueryResult = NonNullable<Awaited<ReturnType<typeof usersFindOne>>>
-export type UsersFindOneQueryError = AxiosError<User>
+export type UsersFindOneQueryError = AxiosError<unknown>
 
-export const useUsersFindOne = <TData = Awaited<ReturnType<typeof usersFindOne>>, TError = AxiosError<User>>(
- id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof usersFindOne>>, TError, TData>, axios?: AxiosRequestConfig}
+export const useUsersFindOne = <TData = Awaited<ReturnType<typeof usersFindOne>>, TError = AxiosError<unknown>>(
+ id: string,
+    params?: UsersFindOneParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof usersFindOne>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
   const {query: queryOptions, axios: axiosOptions} = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getUsersFindOneQueryKey(id);
+  const queryKey = queryOptions?.queryKey ?? getUsersFindOneQueryKey(id,params);
 
   
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof usersFindOne>>> = ({ signal }) => usersFindOne(id, { signal, ...axiosOptions });
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof usersFindOne>>> = ({ signal }) => usersFindOne(id,params, { signal, ...axiosOptions });
 
   const query = useQuery<Awaited<ReturnType<typeof usersFindOne>>, TError, TData>(queryKey, queryFn, {enabled: !!(id), ...queryOptions}) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -314,32 +286,37 @@ export const useUsersGetVCard = <TData = Awaited<ReturnType<typeof usersGetVCard
 }
 
 export const usersFindOneByFirebaseUid = (
-    id: string, options?: AxiosRequestConfig
+    id: string,
+    params?: UsersFindOneByFirebaseUidParams, options?: AxiosRequestConfig
  ): Promise<AxiosResponse<unknown>> => {
     return axios.get(
-      `/users/fireUID/${id}`,options
+      `/users/fireUID/${id}`,{
+    ...options,
+        params: {...params, ...options?.params},}
     );
   }
 
 
-export const getUsersFindOneByFirebaseUidQueryKey = (id: string,) => [`/users/fireUID/${id}`];
+export const getUsersFindOneByFirebaseUidQueryKey = (id: string,
+    params?: UsersFindOneByFirebaseUidParams,) => [`/users/fireUID/${id}`, ...(params ? [params]: [])];
 
     
 export type UsersFindOneByFirebaseUidQueryResult = NonNullable<Awaited<ReturnType<typeof usersFindOneByFirebaseUid>>>
 export type UsersFindOneByFirebaseUidQueryError = AxiosError<User>
 
 export const useUsersFindOneByFirebaseUid = <TData = Awaited<ReturnType<typeof usersFindOneByFirebaseUid>>, TError = AxiosError<User>>(
- id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof usersFindOneByFirebaseUid>>, TError, TData>, axios?: AxiosRequestConfig}
+ id: string,
+    params?: UsersFindOneByFirebaseUidParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof usersFindOneByFirebaseUid>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
   const {query: queryOptions, axios: axiosOptions} = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getUsersFindOneByFirebaseUidQueryKey(id);
+  const queryKey = queryOptions?.queryKey ?? getUsersFindOneByFirebaseUidQueryKey(id,params);
 
   
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof usersFindOneByFirebaseUid>>> = ({ signal }) => usersFindOneByFirebaseUid(id, { signal, ...axiosOptions });
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof usersFindOneByFirebaseUid>>> = ({ signal }) => usersFindOneByFirebaseUid(id,params, { signal, ...axiosOptions });
 
   const query = useQuery<Awaited<ReturnType<typeof usersFindOneByFirebaseUid>>, TError, TData>(queryKey, queryFn, {enabled: !!(id), ...queryOptions}) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 

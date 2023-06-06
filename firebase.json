@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist",
+    "site":"enterprise-dashboard-knot",
     "ignore": [
       "firebase.json",
       "**/.*",

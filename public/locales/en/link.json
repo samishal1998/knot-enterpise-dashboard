@@ -1,0 +1,129 @@
+{
+	"toggle": {
+		"request": {
+			"failure": {
+				"message": "Failed to update Link"
+			},
+			"success": {
+				"message": "Link Updated Successfully"
+			}
+		}
+	},
+	"update": {
+		"request": {
+			"failure": {
+				"message": "Failed to update Link"
+			},
+			"success": {
+				"message": "Link Updated Successfully"
+			}
+		}
+	},
+	"delete": {
+		"request": {
+			"failure": {
+				"message": "Failed to delete the link"
+			},
+			"success": {
+				"message": "Link Deleted Successfully"
+			}
+		}
+	},
+	"forms": {
+		"addLink": {
+			"fields": {
+				"label": {
+					"label": "Link Label"
+				},
+				"url": {
+					"label": "Url"
+				}
+			},
+			"buttons": {
+				"submit": {
+					"label": "Add Link"
+				}
+			},
+			"request": {
+				"failure": {
+					"message": "Failed to Add Link"
+				},
+				"success": {
+					"message": "Link Added Successfully"
+				}
+			}
+		},
+		"editLink": {
+			"fields": {
+				"label": {
+					"label": "Link Label"
+				},
+				"url": {
+					"label": "Url"
+				}
+			},
+			"buttons": {
+				"submit": {
+					"label": "Edit Link"
+				}
+			},"request": {
+				"failure": {
+					"message": "Failed to update Link"
+				},
+				"success": {
+					"message": "Link Updated Successfully"
+				}
+			}
+		}
+	},
+	"presets": {
+		"categories": {
+			"social_media": {
+				"title": "Social Media"
+			},
+			"business": {
+				"title": "Business"
+			},
+			"get_inspired": {
+				"title": "Get Inspired"
+			},
+			"music": {
+				"title": "Music"
+			},
+
+			"custom": {
+				"title": "Custom"
+			}
+		},
+		"facebook": "Facebook",
+		"whatsapp": "WhatsApp",
+		"telegram": "Telegram",
+		"twitter": "Twitter",
+		"instagram": "Instagram",
+		"tiktok": "Tiktok",
+		"snapchat": "Snapchat",
+		"amazon": "Amazon",
+		"linkedin": "Linkedin",
+		"paypal": "Paypal",
+		"spotify": "Spotify",
+		"youtube": "Youtube",
+		"soundcloud": "Soundcloud",
+		"dribbble": "Dribbble",
+		"behance": "Behance",
+		"anghami": "Anghami",
+		"apple_music": "Apple Music",
+		"youtube_music": "Youtube Music",
+		"discord": "Discord",
+		"twitch": "Twitch",
+		"messenger": "Messenger",
+		"pinterest": "Pinterest",
+		"reddit": "Reddit",
+		"pocket": "Pocket",
+		"skype": "Skype",
+		"slack": "Slack",
+		"yelp": "Yelp",
+		"knot": "Knot",
+		"custom": "Custom"
+
+	}
+}

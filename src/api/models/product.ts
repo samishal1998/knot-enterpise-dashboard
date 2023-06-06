@@ -7,6 +7,7 @@
  */
 import type { ProductType } from './productType';
 import type { User } from './user';
+import type { Qr } from './qr';
 import type { Enterprise } from './enterprise';
 
 export interface Product {
@@ -17,6 +18,7 @@ export interface Product {
   activated?: boolean;
   ownerID?: string;
   owner?: User;
-  enterpriseId?: User;
+  enterpriseId?: string;
+  QR?: Qr;
   enterprise?: Enterprise;
 }

@@ -1,0 +1,73 @@
+{
+	"actions": {
+		"create": {
+			"label": "Create New Profile",
+			"guards": {
+				"noAvailableProducts": {
+					"title": "There are no available products",
+					"message": "There are no available products to be connected with newly created profile",
+					"detailedMessage": "In order to create a new profile; you have to connect it to one of your available products,\n but unfortunately none of your products are available.\nYou can contact us to custom order new products"
+
+				}
+			}
+		},
+		"unlink": {
+			"request": {
+				"failure": {
+					"message": "Failed to unlink employee"
+				},
+				"success": {
+					"message": "Employee Unlinked Successfully"
+				}
+			}
+		}
+	},
+	"forms": {
+		"create": {
+			"fields": {
+				"bio": {"label": "About"},
+				"fullname": {"label": "Full Name"},
+				"password": {"label": "Password"},
+				"phone": {"label": "Phone Number"},
+				"email": {"label": "Email"},
+				"product": {"label": "Product"}
+			},
+			"actions": {
+				"submit": {
+					"label": "Submit",
+					"request": {
+						"success": {
+							"message": "Created Profile Successfully"
+						},
+						"failure": {
+							"message": "Failed to Create Profile"
+						}
+					}
+				}
+			}
+		}
+	},
+	"tables.main.columns": {
+		"id": {
+			"title": "ID"
+		},
+		"fullName": {
+			"title": "Full Name"
+		},
+		"email": {
+			"title": "Email"
+		},
+		"phone": {
+			"title": "Phone Number"
+		},
+		"positionInCompany": {
+			"title": "Position In Company"
+		},
+		"bio": {
+			"title": "About"
+		},
+		"actions": {
+			"title": "Actions"
+		}
+	}
+}

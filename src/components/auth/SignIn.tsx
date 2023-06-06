@@ -14,6 +14,8 @@ import AuthPage, { AuthPageOptions } from '../../pages/auth';
 import { AuthType } from '@components/auth/auth-type';
 import { TabPanel } from '@components/tabs/tab-panel';
 
+const phoneAuth = false;
+const emailAuth = true;
 declare global {
 	interface Window {
 		recaptchaVerifier: any;
@@ -62,6 +64,9 @@ function SignIn({ signInCallback, loading }) {
 	return (
 		<>
 			<form autoComplete="on" onSubmit={handleSignIn} className={'flex flex-col'}>
+				{
+					phoneAuth && emailAuth &&
+
 				<Tabs
 					value={authType}
 					onChange={handleChangeTab}
@@ -71,6 +76,7 @@ function SignIn({ signInCallback, loading }) {
 					<Tab icon={<MailOutlineIcon />} value={AuthType.EMAIL} />
 					<Tab icon={<PhoneOutlinedIcon />} value={AuthType.PHONE} />
 				</Tabs>
+				}
 				<TabPanel value={authType} index={AuthType.EMAIL}>
 					<TextField
 						name="email"
@@ -141,15 +147,15 @@ function SignIn({ signInCallback, loading }) {
 				{/*	{t('dontHaveAccount')}{" "}*/}
 				{/*	<Link href={"/signup"}>{t('signup')}</Link>*/}
 				{/*</h2>*/}
-				<h2 className="fl_a mt-3 mb-0 font-weight-normal">
-					<p>
-						{/*{t('supplierSignUp')} <Link href={BecomePartner.route}>{t('clickHere')}</Link>*/}
-					</p>
-					<p>
-						{t('userSignUp')}{' '}
-						<Link href={AuthPage.generatePath({ page: AuthPageOptions.SIGN_UP })}>{t('clickHere')}</Link>
-					</p>
-				</h2>
+				{/*<h2 className="fl_a mt-3 mb-0 font-weight-normal">*/}
+				{/*	<p>*/}
+				{/*		/!*{t('supplierSignUp')} <Link href={BecomePartner.route}>{t('clickHere')}</Link>*!/*/}
+				{/*	</p>*/}
+				{/*	<p>*/}
+				{/*		{t('userSignUp')}{' '}*/}
+				{/*		<Link href={AuthPage.generatePath({ page: AuthPageOptions.SIGN_UP })}>{t('clickHere')}</Link>*/}
+				{/*	</p>*/}
+				{/*</h2>*/}
 			</form>
 		</>
 	);

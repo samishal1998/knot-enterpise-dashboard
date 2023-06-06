@@ -20,4 +20,6 @@ export interface CreateUserDto {
   businessDetails?: BusinessDetails;
   bio?: string;
   address?: string;
+  createdById?: string;
+  createdByCollection?: string;
 }

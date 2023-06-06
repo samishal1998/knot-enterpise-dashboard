@@ -2,19 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Raleway';
-  font-style: normal;
-  src: url(/fonts/raleway/variable/normal.ttf) format('ttf');
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
 
 @font-face {
-  font-family: 'Raleway';
-  font-style: italic;
-  src: url(/fonts/raleway/variable/italic.ttf) format('ttf');
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 100 1000;
+  font-stretch: 0% 200%;
+  src: url("/fonts/raleway/variable/normal.ttf") format('truetype');
+  /*src: url("https://dashboard.myknot.co/fonts/raleway/variable/normal.ttf") format('truetype');*/
 }
+
+@font-face {
+  font-family: "Raleway";
+  font-style: italic;
+  font-weight: 100 1000;
+  font-stretch: 0% 200%;
+  src: url("/fonts/raleway/variable/italic.ttf") format('truetype');
+  /*src: url("https://dashboard.myknot.co/fonts/raleway/variable/italic.ttf") format('truetype');*/
+}
+
+@-webkit-keyframes fontfix {
+  from { opacity: 1; }
+  to   { opacity: 1; }
+}
+
 :root {
-  font-family: Raleway,Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Raleway" , Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   color-scheme: light dark;
 
@@ -29,6 +54,11 @@
 body {
   margin: 0;
   height: 100%;
+  -webkit-animation-delay: 0.1s;
+  -webkit-animation-name: fontfix;
+  -webkit-animation-duration: 0.1s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
 }
 
 #root {

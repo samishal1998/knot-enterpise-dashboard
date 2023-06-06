@@ -9,6 +9,8 @@ import type { ControlledValue } from './controlledValue';
 import type { UpdateUserDtoUserType } from './updateUserDtoUserType';
 import type { WorkInfo } from './workInfo';
 import type { BusinessDetails } from './businessDetails';
+import type { UpdateUserDtoExtraFields } from './updateUserDtoExtraFields';
+import type { UpdateUserDtoUserPrefs } from './updateUserDtoUserPrefs';
 
 export interface UpdateUserDto {
   createdAt?: string;
@@ -29,4 +31,9 @@ export interface UpdateUserDto {
   userAccentColor?: string;
   businessDetails?: BusinessDetails;
   address?: string;
+  directLink?: string;
+  directLinkEnabled?: boolean;
+  lockedProperties?: string[];
+  extraFields?: UpdateUserDtoExtraFields;
+  userPrefs?: UpdateUserDtoUserPrefs;
 }

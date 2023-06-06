@@ -12,48 +12,251 @@ import type {
   AxiosError
 } from 'axios'
 import {
-  useQuery
+  useQuery,
+  useMutation
 } from '@tanstack/react-query'
 import type {
   UseQueryOptions,
+  UseMutationOptions,
   QueryFunction,
+  MutationFunction,
   UseQueryResult,
   QueryKey
 } from '@tanstack/react-query'
+import type {
+  AppEditProductParams
+} from '.././models'
 
 
-export const appRoot = (
+export const appAddProduct = (
      options?: AxiosRequestConfig
  ): Promise<AxiosResponse<void>> => {
     return axios.get(
-      `/`,options
+      `/add-product`,options
     );
   }
 
 
-export const getAppRootQueryKey = () => [`/`];
+export const getAppAddProductQueryKey = () => [`/add-product`];
 
     
-export type AppRootQueryResult = NonNullable<Awaited<ReturnType<typeof appRoot>>>
-export type AppRootQueryError = AxiosError<unknown>
+export type AppAddProductQueryResult = NonNullable<Awaited<ReturnType<typeof appAddProduct>>>
+export type AppAddProductQueryError = AxiosError<unknown>
 
-export const useAppRoot = <TData = Awaited<ReturnType<typeof appRoot>>, TError = AxiosError<unknown>>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof appRoot>>, TError, TData>, axios?: AxiosRequestConfig}
+export const useAppAddProduct = <TData = Awaited<ReturnType<typeof appAddProduct>>, TError = AxiosError<unknown>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof appAddProduct>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
   const {query: queryOptions, axios: axiosOptions} = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getAppRootQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getAppAddProductQueryKey();
 
   
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof appRoot>>> = ({ signal }) => appRoot({ signal, ...axiosOptions });
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof appAddProduct>>> = ({ signal }) => appAddProduct({ signal, ...axiosOptions });
 
-  const query = useQuery<Awaited<ReturnType<typeof appRoot>>, TError, TData>(queryKey, queryFn, queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery<Awaited<ReturnType<typeof appAddProduct>>, TError, TData>(queryKey, queryFn, queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
   query.queryKey = queryKey;
 
   return query;
 }
 
+export const appEditProduct = (
+    params: AppEditProductParams, options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    return axios.get(
+      `/edit-product`,{
+    ...options,
+        params: {...params, ...options?.params},}
+    );
+  }
+
+
+export const getAppEditProductQueryKey = (params: AppEditProductParams,) => [`/edit-product`, ...(params ? [params]: [])];
+
+    
+export type AppEditProductQueryResult = NonNullable<Awaited<ReturnType<typeof appEditProduct>>>
+export type AppEditProductQueryError = AxiosError<unknown>
+
+export const useAppEditProduct = <TData = Awaited<ReturnType<typeof appEditProduct>>, TError = AxiosError<unknown>>(
+ params: AppEditProductParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof appEditProduct>>, TError, TData>, axios?: AxiosRequestConfig}
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const {query: queryOptions, axios: axiosOptions} = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getAppEditProductQueryKey(params);
+
+  
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof appEditProduct>>> = ({ signal }) => appEditProduct(params, { signal, ...axiosOptions });
+
+  const query = useQuery<Awaited<ReturnType<typeof appEditProduct>>, TError, TData>(queryKey, queryFn, queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryKey;
+
+  return query;
+}
+
+export const appGetAllProducts = (
+     options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    return axios.get(
+      `/view-products`,options
+    );
+  }
+
+
+export const getAppGetAllProductsQueryKey = () => [`/view-products`];
+
+    
+export type AppGetAllProductsQueryResult = NonNullable<Awaited<ReturnType<typeof appGetAllProducts>>>
+export type AppGetAllProductsQueryError = AxiosError<unknown>
+
+export const useAppGetAllProducts = <TData = Awaited<ReturnType<typeof appGetAllProducts>>, TError = AxiosError<unknown>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof appGetAllProducts>>, TError, TData>, axios?: AxiosRequestConfig}
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const {query: queryOptions, axios: axiosOptions} = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getAppGetAllProductsQueryKey();
+
+  
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof appGetAllProducts>>> = ({ signal }) => appGetAllProducts({ signal, ...axiosOptions });
+
+  const query = useQuery<Awaited<ReturnType<typeof appGetAllProducts>>, TError, TData>(queryKey, queryFn, queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryKey;
+
+  return query;
+}
+
+export const khamFactory = (
+     options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    return axios.post(
+      `/kham/form`,undefined,options
+    );
+  }
+
+
+
+    export type KhamFactoryMutationResult = NonNullable<Awaited<ReturnType<typeof khamFactory>>>
+    
+    export type KhamFactoryMutationError = AxiosError<unknown>
+
+    export const useKhamFactory = <TError = AxiosError<unknown>,
+    TVariables = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khamFactory>>, TError,TVariables, TContext>, axios?: AxiosRequestConfig}
+) => {
+      const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khamFactory>>, TVariables> = () => {
+          
+
+          return  khamFactory(axiosOptions)
+        }
+
+      return useMutation<Awaited<ReturnType<typeof khamFactory>>, TError, TVariables, TContext>(mutationFn, mutationOptions)
+    }
+    export const khamAddNewProduct = (
+     options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    return axios.post(
+      `/kham/products`,undefined,options
+    );
+  }
+
+
+
+    export type KhamAddNewProductMutationResult = NonNullable<Awaited<ReturnType<typeof khamAddNewProduct>>>
+    
+    export type KhamAddNewProductMutationError = AxiosError<unknown>
+
+    export const useKhamAddNewProduct = <TError = AxiosError<unknown>,
+    TVariables = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khamAddNewProduct>>, TError,TVariables, TContext>, axios?: AxiosRequestConfig}
+) => {
+      const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khamAddNewProduct>>, TVariables> = () => {
+          
+
+          return  khamAddNewProduct(axiosOptions)
+        }
+
+      return useMutation<Awaited<ReturnType<typeof khamAddNewProduct>>, TError, TVariables, TContext>(mutationFn, mutationOptions)
+    }
+    export const khamEditProduct = (
+     options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    return axios.put(
+      `/kham/products`,undefined,options
+    );
+  }
+
+
+
+    export type KhamEditProductMutationResult = NonNullable<Awaited<ReturnType<typeof khamEditProduct>>>
+    
+    export type KhamEditProductMutationError = AxiosError<unknown>
+
+    export const useKhamEditProduct = <TError = AxiosError<unknown>,
+    TVariables = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khamEditProduct>>, TError,TVariables, TContext>, axios?: AxiosRequestConfig}
+) => {
+      const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khamEditProduct>>, TVariables> = () => {
+          
+
+          return  khamEditProduct(axiosOptions)
+        }
+
+      return useMutation<Awaited<ReturnType<typeof khamEditProduct>>, TError, TVariables, TContext>(mutationFn, mutationOptions)
+    }
+    export const khamAuthorize = (
+     options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    return axios.post(
+      `/kham/login`,undefined,options
+    );
+  }
+
+
+
+    export type KhamAuthorizeMutationResult = NonNullable<Awaited<ReturnType<typeof khamAuthorize>>>
+    
+    export type KhamAuthorizeMutationError = AxiosError<unknown>
+
+    export const useKhamAuthorize = <TError = AxiosError<unknown>,
+    TVariables = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof khamAuthorize>>, TError,TVariables, TContext>, axios?: AxiosRequestConfig}
+) => {
+      const {mutation: mutationOptions, axios: axiosOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof khamAuthorize>>, TVariables> = () => {
+          
+
+          return  khamAuthorize(axiosOptions)
+        }
+
+      return useMutation<Awaited<ReturnType<typeof khamAuthorize>>, TError, TVariables, TContext>(mutationFn, mutationOptions)
+    }
+    

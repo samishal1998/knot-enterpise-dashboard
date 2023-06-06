@@ -8,7 +8,7 @@ export const SafeJsonParse = (data, errorValue: any = undefined) => {
 	}
 };
 
-export const resolve = async <T>(promise: PromiseLike<T>): Promise<[T | null, any]> => {
+export const resolve = async <T>(promise: PromiseLike<T>): Promise<[T | null | void, any]> => {
 	try {
 		let response = await promise;
 		return [response, null];
@@ -16,7 +16,6 @@ export const resolve = async <T>(promise: PromiseLike<T>): Promise<[T | null, an
 		return [null, error];
 	}
 };
-
 
 export const fileToBlob = async (file) => {
 	if (file instanceof Blob) {
@@ -45,19 +44,18 @@ export const SafeIntParser = (defaultValue: number) => (value) => {
 };
 
 const addHours = (date?: Date | null, hours?: number) => {
-	if(date){
+	if (date) {
 		hours = hours ?? 1;
-		date.setHours(date.getHours()+hours)
+		date.setHours(date.getHours() + hours);
 	}
 	return date;
+};
 
-}
-
-export function getApiBaseUrl(){
-	return 'https://mq-api-flwmrtuyba-uc.a.run.app'
+export function getApiBaseUrl() {
+	return 'https://mq-api-flwmrtuyba-uc.a.run.app';
 	// return 'http://localhost:3000'
 	// return 'https://moqawlaty.org/api'
 }
-export function getBaseUrl(){
-	return 'https://moqawlaty.org/api'
+export function getBaseUrl() {
+	return 'https://moqawlaty.org/api';
 }

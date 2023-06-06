@@ -1,0 +1,74 @@
+{
+	"actions": {
+		"create": {
+			"label": "اضف حساب جديد",
+			"guards": {
+				"noAvailableProducts": {
+					"title": "لا يوجد منتجات متوفرة",
+					"message": "لا يوجد منتجات متوفرة لديك لربطها بحساب جديد",
+					"detailedMessage": "لكي تقوم بعمل حساب جديد يجب ان يتم ربطه بواحد من المنتجات المتاحه لديك.\n ولكن كل منتجاتك غير متاحة.\nيمكنك التواصل معنا لطلب منتجات جديدة"
+
+				}
+			}
+		},
+		"unlink": {
+			"request": {
+				"failure": {
+					"message": "فشل ازالة الموظف"
+				},
+				"success": {
+					"message": "تم ازالة الموظف بنجاح"
+				}
+			}
+		}
+
+	},
+	"tables.main.columns": {
+		"id": {
+			"title": "الرقم التعريفي"
+		},
+		"fullName": {
+			"title": "الاسم الكامل"
+		},
+		"email": {
+			"title": "البريد الالكتروني"
+		},
+		"phone": {
+			"title": "رقم التليفون"
+		},
+		"positionInCompany": {
+			"title": "المنصب في الشركة"
+		},
+		"bio": {
+			"title": "السيرة الذاتية"
+		},
+		"actions": {
+			"title": "إجراءات"
+		}
+	},
+	"forms": {
+		"create": {
+			"fields": {
+				"bio": {"label": "السيرة الذاتيه"},
+				"fullname": {"label": "الاسم الكامل"},
+				"password": {"label": "كلمة السر"},
+				"phone": {"label": "رقم التليفون"},
+				"email": {"label": "البريد"},
+				"product": {"label": "المنتج"}
+			},
+			"actions": {
+				"submit": {
+					"label": "ارسال",
+					"request": {
+						"success": {
+							"message": "تم الاضافة بنجاح"
+						},
+						"failure": {
+							"message": "فشل في الاضافة"
+						}
+					}
+				}
+			}
+		}
+	}
+}
