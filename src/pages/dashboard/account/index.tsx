@@ -36,7 +36,7 @@ export const AccountSettingsPage: DrawerPage = () => {
 		<>
 			<div className={'pb-10'}>
 				<div className={'py-5 px-1 mx-auto max-w-screen-xl '}>
-					<AccountTabs page={location.pathname} className={'pb-5 mx-auto '} navigate={navigate} />
+					<AccountTabs page={location.pathname} user={user} className={'pb-5 mx-auto '} navigate={navigate} />
 					<Outlet />
 				</div>
 			</div>

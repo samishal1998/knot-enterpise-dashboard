@@ -27,6 +27,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { getPublicImageUrlFromPath } from '@utils/firebase/storage-helpers';
 import { EditProfilePage } from '@pages/employees/edit-profile.page';
+import _ from 'lodash';
+import { productShortId } from '@pages/distributor/qr/qr-list.page';
 
 export const ProductsPage: DrawerPage = () => {
 	const { user } = useGuard({ defaultRedirect: AuthPage.generatePath({ page: AuthPageOptions.SIGN_IN }) });
@@ -46,8 +48,7 @@ export const ProductsPage: DrawerPage = () => {
 				headerName: t('product_number'),
 				minWidth: 100,
 				flex: 2,
-				valueGetter: (params: GridValueGetterParams) =>
-					params.value?.number ? 'P' + params.value?.number.toString(16).padStart(4, '0') : '',
+				valueGetter: (params: GridValueGetterParams) => productShortId(params.row),
 			},
 			{
 				field: 'id',

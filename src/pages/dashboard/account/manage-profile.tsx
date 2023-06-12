@@ -131,9 +131,9 @@ export const ManageProfilePage: BasePageType = () => {
 				</title>
 			</Helmet>
 			<LoadingPaper isLoading={!shouldRender}>
-				<button id="test-btn" className="rounded-lg p-3 bg-green-400 hover:bg-green-600">
-					Ripple
-				</button>
+				{/*<button id="test-btn" className="rounded-lg p-3 bg-green-400 hover:bg-green-600">*/}
+				{/*	Ripple*/}
+				{/*</button>*/}
 				<div className={'grid gap-x-4 gap-y-2 grid-cols-1 md:grid-cols-3 mt-10'}>
 					<div
 						className={

@@ -59,6 +59,8 @@ body {
   -webkit-animation-duration: 0.1s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: linear;
+  background-color: white;
+
 }
 
 #root {

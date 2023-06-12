@@ -14,4 +14,5 @@ export const ProductType = {
   CARD: 'CARD',
   STICKER: 'STICKER',
   KEYCHAIN: 'KEYCHAIN',
+  EXTERNAL: 'EXTERNAL',
 } as const;

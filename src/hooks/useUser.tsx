@@ -69,6 +69,7 @@ export const useCurrentUser = () => {
 export enum GuardType {
 	CUSTOMER_ONLY,
 	SUPPLIER_ONLY,
+	DISTRIBUTOR_ONLY,
 	USER_ONLY,
 	GUEST_ONLY,
 }

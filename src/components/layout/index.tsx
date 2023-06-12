@@ -34,8 +34,26 @@ import { LanguageDropDown } from '@components/layout/app-bar/lang-dropdown';
 import { useTranslation } from 'react-i18next';
 import { getEnterpriseLogoUrl } from '../../helpers/enterprise/get-enterprise-logo';
 import clsx from 'clsx';
+import QrListPage from '@pages/distributor/qr/qr-list.page';
+import GenerateQrPage from '@pages/distributor/qr/generate/generate-qr.page';
+import { User } from '../../api/models';
 
-const DrawerPages: DrawerPage[] = [EmployeesPage, ProductsPage];
+const drawerSections = [
+	{
+		condition: ({ user }: { user: User | null | undefined; query }) => {
+			return !!user?.enterpriseAccess?.id;
+		},
+		title: 'main:enterprise',
+		pages: [EmployeesPage, ProductsPage],
+	},
+	{
+		condition: ({ user }) => {
+			return !!user?.distributorId;
+		},
+		title: 'main:distributor',
+		pages: [QrListPage, GenerateQrPage],
+	},
+];
 export default function Layout({ children }) {
 	const theme = useTheme();
 	const { user, fireUser, fetchCompleted, authCompleted, query } = useCurrentUser();
@@ -130,30 +148,44 @@ export default function Layout({ children }) {
 							</Box>
 							<Divider />
 							<List>
-								{DrawerPages.map(({ icon, labelKey, fallbackLabel, route, generatePath }) => (
-									<ListItem key={route} disablePadding sx={{ display: 'block' }}>
-										<ListItemButton
-											href={generatePath()}
-											sx={{
-												minHeight: 48,
-												justifyContent: open ? 'initial' : 'center',
-												px: 2.5,
-											}}>
-											<ListItemIcon
-												sx={{
-													minWidth: 0,
-													mr: open ? 3 : 'auto',
-													justifyContent: 'center',
-												}}>
-												{icon}
-											</ListItemIcon>
-											<ListItemText
-												primary={labelKey ? t(labelKey) : fallbackLabel}
-												sx={{ opacity: open ? 1 : 0 }}
-											/>
-										</ListItemButton>
-									</ListItem>
-								))}
+								{drawerSections
+									.filter(({ condition }) => condition?.({ query, user }))
+									.map(({ title, pages }) => {
+										return (
+											<>
+												{open && (
+													<ListItem>
+														<ListItemText>{t(title)}</ListItemText>
+													</ListItem>
+												)}
+												{pages.map(({ icon, labelKey, fallbackLabel, route, generatePath }) => (
+													<ListItem key={route} disablePadding sx={{ display: 'block' }}>
+														<ListItemButton
+															href={generatePath()}
+															sx={{
+																minHeight: 48,
+																justifyContent: open ? 'initial' : 'center',
+																px: 2.5,
+															}}>
+															<ListItemIcon
+																sx={{
+																	minWidth: 0,
+																	mr: open ? 3 : 'auto',
+																	justifyContent: 'center',
+																}}>
+																{icon}
+															</ListItemIcon>
+															<ListItemText
+																primary={labelKey ? t(labelKey) : fallbackLabel}
+																sx={{ opacity: open ? 1 : 0 }}
+															/>
+														</ListItemButton>
+													</ListItem>
+												))}
+												<Divider />
+											</>
+										);
+									})}
 							</List>
 						</Drawer>
 						<Box component="main" sx={{ flexGrow: 1, p: 5, height: '100%' }}>

@@ -4,7 +4,6 @@ import { KNOT_COMPANY_DASHBOARD_THEME } from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { router } from './router';
-import jsonServerProvider from 'ra-data-json-server';
 import Axios from 'axios';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -24,10 +23,7 @@ import { ar } from 'yup-locales';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { SnackbarProvider } from 'react-mui-snackbar-helper';
-
-Axios.defaults.baseURL = import.meta.env.DEV ? 'http://localhost:3000' : 'https://knot-et3wnn6iuq-ue.a.run.app';
-
-export const queryClient = new QueryClient();
+import { queryClient } from '@utils/react-query/client';
 
 // Configure JSS
 const jss = create({
@@ -55,16 +51,18 @@ function App() {
 	return (
 		<>
 			<RTL>
-				<LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={i18n.language} utils={MomentUtils}>
-					<ThemeProvider theme={KNOT_COMPANY_DASHBOARD_THEME()}>
-						<QueryClientProvider client={queryClient}>
-							<SnackbarProvider>
-								<RouterProvider router={router} />
-								<ReactQueryDevtools initialIsOpen={true} />
-							</SnackbarProvider>
-						</QueryClientProvider>
-					</ThemeProvider>
-				</LocalizationProvider>
+				<div dir={direction} className={'h-full'} lang={i18n.language}>
+					<LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={i18n.language} utils={MomentUtils}>
+						<ThemeProvider theme={KNOT_COMPANY_DASHBOARD_THEME()}>
+							<QueryClientProvider client={queryClient}>
+								<SnackbarProvider>
+									<RouterProvider router={router} />
+									<ReactQueryDevtools initialIsOpen={true} />
+								</SnackbarProvider>
+							</QueryClientProvider>
+						</ThemeProvider>
+					</LocalizationProvider>
+				</div>
 			</RTL>
 		</>
 	);

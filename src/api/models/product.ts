@@ -5,20 +5,28 @@
  * API DOCS
  * OpenAPI spec version: 1.0
  */
+import type { Qr } from './qr';
 import type { ProductType } from './productType';
 import type { User } from './user';
-import type { Qr } from './qr';
 import type { Enterprise } from './enterprise';
+import type { Distributor } from './distributor';
+import type { Payment } from './payment';
 
 export interface Product {
   id?: string;
   uuid: string;
   qrUuid: string;
+  QR?: Qr;
   type?: ProductType;
   activated?: boolean;
+  label?: string;
   ownerID?: string;
   owner?: User;
   enterpriseId?: string;
-  QR?: Qr;
   enterprise?: Enterprise;
+  generatedBy?: Distributor;
+  generatedById?: string;
+  payment?: Payment;
+  paymentFinalized?: boolean;
+  paymentId?: string;
 }

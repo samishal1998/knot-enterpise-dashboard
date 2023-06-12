@@ -19,11 +19,6 @@ import { ExampleLoaderComponent } from './dev/palette';
 // }
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	// <React.StrictMode>
-	<DevSupport ComponentPreviews={ComponentPreviews} useInitialHook={useInitial}>
-		<>
-			<EnterpriseDashboardApp />
-			<ExampleLoaderComponent />
-		</>
-	</DevSupport>,
+	<EnterpriseDashboardApp />,
 	// </React.StrictMode>,
 );

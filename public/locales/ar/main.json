@@ -309,5 +309,17 @@
 			"message": "تم تحديث الموظف بنجاح"
 		}
 	},
+
+	"distributor": "موزع",
+	"enterprise": "شركات",
+	"pages": {
+		"qr-list": {
+			"title": "قائمة Qr"
+		},
+
+		"generate-qr": {
+			"title": "انشاء رمز Qr"
+		}
+	},
 	"linkedEmployee": "الموظف الموصول"
 }

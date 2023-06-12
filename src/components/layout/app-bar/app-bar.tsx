@@ -23,7 +23,7 @@ export {};
 // import { Search, SearchIconWrapper, SearchInput } from './search';
 // import { useCurrentUser } from '@hooks/useUser';
 // import {useRouter} from "@hooks/useRouter";
-// import {UserType} from "@prisma/client";
+// import {UserType} from "@prisma/client.ts";
 //
 // export default function MenuAppBar({ title = 'MoQawlaty', search }: { title?; search? }) {
 // 	const [anchorEl, setAnchorEl] = React.useState(null);

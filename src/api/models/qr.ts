@@ -8,5 +8,5 @@
 
 export interface Qr {
   id?: string;
-  number?: number;
+  shortId?: number;
 }

@@ -18,6 +18,7 @@ import type { Enterprise } from './enterprise';
 import type { EnterpriseAccess } from './enterpriseAccess';
 import type { UserUserPrefs } from './userUserPrefs';
 import type { UserExtraFields } from './userExtraFields';
+import type { Distributor } from './distributor';
 
 export interface User {
   title?: string;
@@ -58,4 +59,6 @@ export interface User {
   extraFields?: UserExtraFields;
   createdById?: string;
   createdByCollection?: string;
+  distributorId?: string;
+  distributor?: Distributor;
 }

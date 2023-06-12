@@ -1,9 +1,9 @@
 import { Tab, Tabs } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import ManageProfilePage from "@pages/dashboard/account/manage-profile";
-import ManageAuthenticationPage from "@pages/dashboard/account/manage-authentication";
+import ManageProfilePage from '@pages/dashboard/account/manage-profile';
+import ManageAuthenticationPage from '@pages/dashboard/account/manage-authentication';
 
-export const AccountTabs = ({ page, navigate, ...props }) => {
+export const AccountTabs = ({ page, navigate, user, ...props }) => {
 	const { t, i18n } = useTranslation(['main']);
 	return (
 		<>
@@ -21,7 +21,13 @@ export const AccountTabs = ({ page, navigate, ...props }) => {
 					},
 				}}
 				{...props}>
-				<LinkTab value={ManageProfilePage.generatePath()} label={t('profile')} href={ManageProfilePage.generatePath()} />
+				{!!user?.distributorId || (
+					<LinkTab
+						value={ManageProfilePage.generatePath()}
+						label={t('profile')}
+						href={ManageProfilePage.generatePath()}
+					/>
+				)}
 				<LinkTab
 					value={ManageAuthenticationPage.generatePath()}
 					label={t('authentication')}

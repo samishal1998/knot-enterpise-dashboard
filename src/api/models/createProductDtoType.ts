@@ -14,4 +14,5 @@ export const CreateProductDtoType = {
   CARD: 'CARD',
   STICKER: 'STICKER',
   KEYCHAIN: 'KEYCHAIN',
+  EXTERNAL: 'EXTERNAL',
 } as const;

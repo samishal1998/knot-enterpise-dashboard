@@ -5,16 +5,14 @@
  * API DOCS
  * OpenAPI spec version: 1.0
  */
-import type { FindAllEventsDtoDate } from './findAllEventsDtoDate';
-import type { FindAllEventsDtoCreatorID } from './findAllEventsDtoCreatorID';
-import type { PrismaStringNullableListFilter } from './prismaStringNullableListFilter';
-import type { PrismaStringFilter } from './prismaStringFilter';
+import type { FindAllEventsDtoTags } from './findAllEventsDtoTags';
+import type { FindAllEventsDtoCategory } from './findAllEventsDtoCategory';
 
 export interface FindAllEventsDto {
-  date?: FindAllEventsDtoDate;
+  date?: string;
   activated?: boolean;
-  creatorID?: FindAllEventsDtoCreatorID;
+  creatorID?: string;
   isFeatured?: boolean;
-  tags?: PrismaStringNullableListFilter;
-  category?: PrismaStringFilter;
+  tags?: FindAllEventsDtoTags;
+  category?: FindAllEventsDtoCategory;
 }

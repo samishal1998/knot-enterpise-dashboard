@@ -316,6 +316,17 @@
 		}
 	},
 
+	"distributor": "Distributor",
+	"enterprise": "Enterprise",
+	"pages": {
+		"qr-list": {
+			"title": "Qr List"
+		},
+
+		"generate-qr": {
+			"title": "Generate Qr"
+		}
+	},
 
 	"trail": "trail"
 }

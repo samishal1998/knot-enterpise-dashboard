@@ -38,6 +38,7 @@ import '@components/auth/loginStyles.css';
 
 import Logo from '@assets/logo.png';
 import { signOut } from '@firebase/auth';
+import QrListPage from '@pages/distributor/qr/qr-list.page';
 export enum AuthPageOptions {
 	SIGN_UP = 'sign-up',
 	SIGN_IN = 'sign-in',
@@ -211,7 +212,7 @@ const AuthPage: BasePageType<AuthPageRouteParams> = () => {
 
 		console.log({ _user, error });
 		if (_user) {
-			if (_user?.enterpriseAccess?.id) {
+			if (_user?.enterpriseAccess?.id || _user?.distributorId) {
 				showSuccessMessage(t('signedIn.success'));
 			} else {
 				showErrorMessage(t('signedIn.notEnterprise'));
@@ -232,7 +233,7 @@ const AuthPage: BasePageType<AuthPageRouteParams> = () => {
 	};
 
 	const done = useCallback(async (user: User) => {
-		await navigate(EmployeesPage.generatePath());
+		await navigate(user.distributorId ? QrListPage.generatePath() : EmployeesPage.generatePath());
 	}, []);
 
 	const getForm = (): any => {
@@ -271,55 +272,6 @@ const AuthPage: BasePageType<AuthPageRouteParams> = () => {
 				return <SignIn signInCallback={signInCallback} loading={loading} />;
 		}
 	};
-	const getTitle = (): any => {
-		if (confirmation) {
-			return (
-				<>
-					<h1 className="h1 mt-4 mb-3 font-weight-semi-bold">{t('confirmYourPhoneNumber')}</h1>
-				</>
-			);
-		}
-
-		switch (page) {
-			case AuthPageOptions.SIGN_UP:
-				return (
-					<div
-						className={clsx({
-							'flex flex-col align-center justify-center': !social,
-						})}>
-						<h1 className="h1 mt-4 mb-3 font-weight-semi-bold">{t('createAccount')}</h1>
-						<h1 className=" fl_subtitle h5 mb-3 font-weight-normal">{t('setUpYourNewAccount')}</h1>
-					</div>
-				);
-			case AuthPageOptions.COMPLETE_SIGN_UP:
-				return (
-					<>
-						<h1 className="h1 mt-4 mb-3 font-weight-semi-bold">{t('completeSignUp.title')}</h1>
-					</>
-				);
-
-			case AuthPageOptions.RESET:
-				return (
-					<>
-						<h1 className="h1 mt-4 mb-3 font-weight-semi-bold">{t('resetPassword')}</h1>
-						{queryString.parse(location.search).token ? (
-							<h1 className=" fl_subtitle h5 mb-3 font-weight-normal">{t('createNewPassword')}</h1>
-						) : (
-							<h1 className=" fl_subtitle h5 mb-3 font-weight-normal">
-								{t('resetLinkWillBeSentToYourMail')}
-							</h1>
-						)}
-					</>
-				);
-			case AuthPageOptions.SIGN_IN:
-				return (
-					<>
-						<h1 className="h1 mt-4 mb-3 font-weight-semi-bold">{t('welcomeBack')}</h1>
-						<h1 className=" fl_subtitle h5 mb-3 font-weight-normal">{t('logInToYourAccount')}</h1>
-					</>
-				);
-		}
-	};
 	return (
 		<>
 			<div id={'recaptcha-container'} className="login-container justify-center">
@@ -331,7 +283,7 @@ const AuthPage: BasePageType<AuthPageRouteParams> = () => {
 							</Link>
 						</div>
 
-						{getTitle()}
+						{getTitle({ confirmation, page, social, t })}
 
 						<div
 							className={clsx('form-cont mt-5 flex flex-wrap flex-row', {
@@ -397,26 +349,6 @@ const AuthPage: BasePageType<AuthPageRouteParams> = () => {
 													</li>
 												)}
 											/>
-
-											{/*    <LinkedinLogin*/}
-											{/*      clientId="81d2ju1vhzhcen"*/}
-											{/*      buttonText="Log in with Linked In"*/}
-											{/*      scope="r_emailaddress,r_liteprofile"*/}
-											{/*      onFailure={responseLinkedIn}*/}
-											{/*      onSuccess={responseLinkedIn}*/}
-											{/*      redirectUri="https://www.fluidmeet.com/linkedin"*/}
-											{/*      renderElement={renderProps => (*/}
-											{/*        <li className="firebaseui-list-item" onClick={renderProps.onClick}>*/}
-											{/*          <div id="googleBtn" className="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-linkedin firebaseui-id-idp-button">*/}
-											{/*<span className="firebaseui-idp-icon-wrapper">*/}
-											{/*  <img className="firebaseui-idp-icon" alt="" src={linkedin}/>*/}
-											{/*</span>*/}
-											{/*            <span*/}
-											{/*                className="firebaseui-idp-text firebaseui-idp-text-long">Log in with LinkedIn</span>*/}
-											{/*          </div>*/}
-											{/*        </li>*/}
-											{/*      )}*/}
-											{/*    />*/}
 										</ul>
 									</div>
 								</div>
@@ -432,13 +364,13 @@ const AuthPage: BasePageType<AuthPageRouteParams> = () => {
 						<p className="text-foot" dir={'ltr'}>
 							By continuing, you are indicating that you accept our{' '}
 							<Link
-								href={'https://myknot.co/terms-and-conditions'}
+								href={'https://myknot.co/policies/terms-and-conditions'}
 								className="firebaseui-link firebaseui-tos-link">
 								Terms of Use
 							</Link>{' '}
 							,{' '}
 							<Link
-								href={'https://myknot.co/privacy-policy'}
+								href={'https://myknot.co/policies/privacy-policy'}
 								className="firebaseui-link firebaseui-pp-link">
 								Privacy Policy
 							</Link>{' '}
@@ -453,3 +385,53 @@ AuthPage.route = '/auth/:page';
 AuthPage.generatePath = generatePath(AuthPage.route);
 
 export default AuthPage;
+
+const getTitle = ({ confirmation, t, page, social }): any => {
+	if (confirmation) {
+		return (
+			<>
+				<h1 className="h1 mt-4 mb-3 font-weight-semi-bold">{t('confirmYourPhoneNumber')}</h1>
+			</>
+		);
+	}
+
+	switch (page) {
+		case AuthPageOptions.SIGN_UP:
+			return (
+				<div
+					className={clsx({
+						'flex flex-col align-center justify-center': !social,
+					})}>
+					<h1 className="h1 mt-4 mb-3 font-weight-semi-bold">{t('createAccount')}</h1>
+					<h1 className=" fl_subtitle h5 mb-3 font-weight-normal">{t('setUpYourNewAccount')}</h1>
+				</div>
+			);
+		case AuthPageOptions.COMPLETE_SIGN_UP:
+			return (
+				<>
+					<h1 className="h1 mt-4 mb-3 font-weight-semi-bold">{t('completeSignUp.title')}</h1>
+				</>
+			);
+
+		case AuthPageOptions.RESET:
+			return (
+				<>
+					<h1 className="h1 mt-4 mb-3 font-weight-semi-bold">{t('resetPassword')}</h1>
+					{queryString.parse(location.search).token ? (
+						<h1 className=" fl_subtitle h5 mb-3 font-weight-normal">{t('createNewPassword')}</h1>
+					) : (
+						<h1 className=" fl_subtitle h5 mb-3 font-weight-normal">
+							{t('resetLinkWillBeSentToYourMail')}
+						</h1>
+					)}
+				</>
+			);
+		case AuthPageOptions.SIGN_IN:
+			return (
+				<>
+					<h1 className="h1 mt-4 mb-3 font-weight-semi-bold">{t('welcomeBack')}</h1>
+					<h1 className=" fl_subtitle h5 mb-3 font-weight-normal">{t('logInToYourAccount')}</h1>
+				</>
+			);
+	}
+};

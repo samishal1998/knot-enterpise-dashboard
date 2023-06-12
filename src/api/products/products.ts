@@ -31,7 +31,7 @@ import type {
 
 export const productsCreate = (
     createProductDto: CreateProductDto, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<Product>> => {
     return axios.post(
       `/products`,
       createProductDto,options
@@ -42,9 +42,9 @@ export const productsCreate = (
 
     export type ProductsCreateMutationResult = NonNullable<Awaited<ReturnType<typeof productsCreate>>>
     export type ProductsCreateMutationBody = CreateProductDto
-    export type ProductsCreateMutationError = AxiosError<Product>
+    export type ProductsCreateMutationError = AxiosError<unknown>
 
-    export const useProductsCreate = <TError = AxiosError<Product>,
+    export const useProductsCreate = <TError = AxiosError<unknown>,
     
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof productsCreate>>, TError,{data: CreateProductDto}, TContext>, axios?: AxiosRequestConfig}
 ) => {
@@ -63,7 +63,7 @@ export const productsCreate = (
     }
     export const productsFindAll = (
      options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<Product[]>> => {
     return axios.get(
       `/products`,options
     );
@@ -74,9 +74,9 @@ export const getProductsFindAllQueryKey = () => [`/products`];
 
     
 export type ProductsFindAllQueryResult = NonNullable<Awaited<ReturnType<typeof productsFindAll>>>
-export type ProductsFindAllQueryError = AxiosError<Product[]>
+export type ProductsFindAllQueryError = AxiosError<unknown>
 
-export const useProductsFindAll = <TData = Awaited<ReturnType<typeof productsFindAll>>, TError = AxiosError<Product[]>>(
+export const useProductsFindAll = <TData = Awaited<ReturnType<typeof productsFindAll>>, TError = AxiosError<unknown>>(
   options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof productsFindAll>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
@@ -98,7 +98,7 @@ export const useProductsFindAll = <TData = Awaited<ReturnType<typeof productsFin
 
 export const productsFindOneByUuidIncludeUser = (
     id: string, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<Product>> => {
     return axios.get(
       `/products/uuid/${id}/user`,options
     );
@@ -109,9 +109,9 @@ export const getProductsFindOneByUuidIncludeUserQueryKey = (id: string,) => [`/p
 
     
 export type ProductsFindOneByUuidIncludeUserQueryResult = NonNullable<Awaited<ReturnType<typeof productsFindOneByUuidIncludeUser>>>
-export type ProductsFindOneByUuidIncludeUserQueryError = AxiosError<Product>
+export type ProductsFindOneByUuidIncludeUserQueryError = AxiosError<unknown>
 
-export const useProductsFindOneByUuidIncludeUser = <TData = Awaited<ReturnType<typeof productsFindOneByUuidIncludeUser>>, TError = AxiosError<Product>>(
+export const useProductsFindOneByUuidIncludeUser = <TData = Awaited<ReturnType<typeof productsFindOneByUuidIncludeUser>>, TError = AxiosError<unknown>>(
  id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof productsFindOneByUuidIncludeUser>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
@@ -133,7 +133,7 @@ export const useProductsFindOneByUuidIncludeUser = <TData = Awaited<ReturnType<t
 
 export const productsFindOneByQrUuidIncludeUser = (
     id: string, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<Product>> => {
     return axios.get(
       `/products/qr-uuid/${id}/user`,options
     );
@@ -144,9 +144,9 @@ export const getProductsFindOneByQrUuidIncludeUserQueryKey = (id: string,) => [`
 
     
 export type ProductsFindOneByQrUuidIncludeUserQueryResult = NonNullable<Awaited<ReturnType<typeof productsFindOneByQrUuidIncludeUser>>>
-export type ProductsFindOneByQrUuidIncludeUserQueryError = AxiosError<Product>
+export type ProductsFindOneByQrUuidIncludeUserQueryError = AxiosError<unknown>
 
-export const useProductsFindOneByQrUuidIncludeUser = <TData = Awaited<ReturnType<typeof productsFindOneByQrUuidIncludeUser>>, TError = AxiosError<Product>>(
+export const useProductsFindOneByQrUuidIncludeUser = <TData = Awaited<ReturnType<typeof productsFindOneByQrUuidIncludeUser>>, TError = AxiosError<unknown>>(
  id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof productsFindOneByQrUuidIncludeUser>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
@@ -168,7 +168,7 @@ export const useProductsFindOneByQrUuidIncludeUser = <TData = Awaited<ReturnType
 
 export const productsFindOneIncludeUser = (
     id: string, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<Product>> => {
     return axios.get(
       `/products/${id}/user`,options
     );
@@ -179,9 +179,9 @@ export const getProductsFindOneIncludeUserQueryKey = (id: string,) => [`/product
 
     
 export type ProductsFindOneIncludeUserQueryResult = NonNullable<Awaited<ReturnType<typeof productsFindOneIncludeUser>>>
-export type ProductsFindOneIncludeUserQueryError = AxiosError<Product>
+export type ProductsFindOneIncludeUserQueryError = AxiosError<unknown>
 
-export const useProductsFindOneIncludeUser = <TData = Awaited<ReturnType<typeof productsFindOneIncludeUser>>, TError = AxiosError<Product>>(
+export const useProductsFindOneIncludeUser = <TData = Awaited<ReturnType<typeof productsFindOneIncludeUser>>, TError = AxiosError<unknown>>(
  id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof productsFindOneIncludeUser>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
@@ -203,7 +203,7 @@ export const useProductsFindOneIncludeUser = <TData = Awaited<ReturnType<typeof 
 
 export const productsFindOneByQrUuid = (
     id: string, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<Product>> => {
     return axios.get(
       `/products/qr-uuid/${id}`,options
     );
@@ -214,9 +214,9 @@ export const getProductsFindOneByQrUuidQueryKey = (id: string,) => [`/products/q
 
     
 export type ProductsFindOneByQrUuidQueryResult = NonNullable<Awaited<ReturnType<typeof productsFindOneByQrUuid>>>
-export type ProductsFindOneByQrUuidQueryError = AxiosError<Product>
+export type ProductsFindOneByQrUuidQueryError = AxiosError<unknown>
 
-export const useProductsFindOneByQrUuid = <TData = Awaited<ReturnType<typeof productsFindOneByQrUuid>>, TError = AxiosError<Product>>(
+export const useProductsFindOneByQrUuid = <TData = Awaited<ReturnType<typeof productsFindOneByQrUuid>>, TError = AxiosError<unknown>>(
  id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof productsFindOneByQrUuid>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
@@ -238,7 +238,7 @@ export const useProductsFindOneByQrUuid = <TData = Awaited<ReturnType<typeof pro
 
 export const productsFindOneByUuid = (
     id: string, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<Product>> => {
     return axios.get(
       `/products/uuid/${id}`,options
     );
@@ -249,9 +249,9 @@ export const getProductsFindOneByUuidQueryKey = (id: string,) => [`/products/uui
 
     
 export type ProductsFindOneByUuidQueryResult = NonNullable<Awaited<ReturnType<typeof productsFindOneByUuid>>>
-export type ProductsFindOneByUuidQueryError = AxiosError<Product>
+export type ProductsFindOneByUuidQueryError = AxiosError<unknown>
 
-export const useProductsFindOneByUuid = <TData = Awaited<ReturnType<typeof productsFindOneByUuid>>, TError = AxiosError<Product>>(
+export const useProductsFindOneByUuid = <TData = Awaited<ReturnType<typeof productsFindOneByUuid>>, TError = AxiosError<unknown>>(
  id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof productsFindOneByUuid>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
@@ -273,7 +273,7 @@ export const useProductsFindOneByUuid = <TData = Awaited<ReturnType<typeof produ
 
 export const productsFindOne = (
     id: string, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<unknown>> => {
+ ): Promise<AxiosResponse<Product>> => {
     return axios.get(
       `/products/${id}`,options
     );
@@ -284,9 +284,9 @@ export const getProductsFindOneQueryKey = (id: string,) => [`/products/${id}`];
 
     
 export type ProductsFindOneQueryResult = NonNullable<Awaited<ReturnType<typeof productsFindOne>>>
-export type ProductsFindOneQueryError = AxiosError<Product>
+export type ProductsFindOneQueryError = AxiosError<unknown>
 
-export const useProductsFindOne = <TData = Awaited<ReturnType<typeof productsFindOne>>, TError = AxiosError<Product>>(
+export const useProductsFindOne = <TData = Awaited<ReturnType<typeof productsFindOne>>, TError = AxiosError<unknown>>(
  id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof productsFindOne>>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {

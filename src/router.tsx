@@ -25,13 +25,19 @@ import { SignInPage } from '@pages/auth/sign-in';
 import { Dashboard } from '@mui/icons-material';
 import { AccountSettingsPage } from '@pages/dashboard/account';
 import { CreateProfilePage } from '@pages/employees/create-profile.page';
+import QrListPage from '@pages/distributor/qr/qr-list.page';
+import GenerateQrPage from '@pages/distributor/qr/generate/generate-qr.page';
+import Home from '@pages/home.page';
+import PaymentPage from '@pages/payment.page';
 
 export const router = createBrowserRouter([
 	{
 		path: '/',
-		loader() {
-			throw redirect(EmployeesPage.route);
-		},
+		element: <Home />,
+	},
+	{
+		path: PaymentPage.route,
+		element: <PaymentPage />,
 	},
 	{
 		path: '/dashboard',
@@ -56,7 +62,7 @@ export const router = createBrowserRouter([
 				children: [
 					{
 						loader: () => {
-							throw redirect(ManageProfilePage.route);
+							throw redirect(ManageAuthenticationPage.route);
 						},
 						index: true,
 					},
@@ -64,6 +70,18 @@ export const router = createBrowserRouter([
 					{ path: ManageAuthenticationPage.route, element: <ManageAuthenticationPage /> },
 				],
 			},
+		],
+	},
+	{
+		path: '/distributor',
+		element: (
+			<Layout key={'distributor-layout'}>
+				<Outlet />
+			</Layout>
+		),
+		children: [
+			{ path: QrListPage.route, element: <QrListPage /> },
+			{ path: GenerateQrPage.route, element: <GenerateQrPage /> },
 		],
 	},
 	{

@@ -27,6 +27,7 @@ import type {
   ReportUserDto,
   User,
   CreateUserDto,
+  UsersGetMeParams,
   UsersFindOneParams,
   UpdateUserDto,
   UsersIsUsernameAvailableDefault,
@@ -134,6 +135,43 @@ export const useUsersFindAll = <TData = Awaited<ReturnType<typeof usersFindAll>>
   const queryFn: QueryFunction<Awaited<ReturnType<typeof usersFindAll>>> = ({ signal }) => usersFindAll({ signal, ...axiosOptions });
 
   const query = useQuery<Awaited<ReturnType<typeof usersFindAll>>, TError, TData>(queryKey, queryFn, queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryKey;
+
+  return query;
+}
+
+export const usersGetMe = (
+    params?: UsersGetMeParams, options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<User>> => {
+    return axios.get(
+      `/users/me`,{
+    ...options,
+        params: {...params, ...options?.params},}
+    );
+  }
+
+
+export const getUsersGetMeQueryKey = (params?: UsersGetMeParams,) => [`/users/me`, ...(params ? [params]: [])];
+
+    
+export type UsersGetMeQueryResult = NonNullable<Awaited<ReturnType<typeof usersGetMe>>>
+export type UsersGetMeQueryError = AxiosError<unknown>
+
+export const useUsersGetMe = <TData = Awaited<ReturnType<typeof usersGetMe>>, TError = AxiosError<unknown>>(
+ params?: UsersGetMeParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof usersGetMe>>, TError, TData>, axios?: AxiosRequestConfig}
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const {query: queryOptions, axios: axiosOptions} = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getUsersGetMeQueryKey(params);
+
+  
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof usersGetMe>>> = ({ signal }) => usersGetMe(params, { signal, ...axiosOptions });
+
+  const query = useQuery<Awaited<ReturnType<typeof usersGetMe>>, TError, TData>(queryKey, queryFn, queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
   query.queryKey = queryKey;
 

@@ -1,0 +1,73 @@
+{
+	"cta": {
+		"join-us": "Join Us"
+	},
+	"actions": {
+		"dashboard": "To The Dashboard",
+		"login": "Log In",
+		"signup": "Sign Up"
+	},
+	"languages": {
+		"arabic": "Arabic",
+		"english": "English"
+	},
+	"banners": {
+		"main": {
+			"title": "The Future of\nTouchless Networking",
+			"subtitle": "Knot NFC enabled products will make you share your social media, contact information, documents and more in few seconds.With Knot app, users can conveniently store all their information and contacts in one place. Taking networking to the next level.",
+			"cta": "Join Us"
+		}
+	},
+	"sections": {
+		"1": {
+			"title": "Start Printing Your Products",
+			"slides": {
+				"1": {
+					"title": "Generate Qr Codes"
+				},
+				"2": {
+					"title": "Design Your Products And Cards"
+				},
+				"3": {
+					"title": "Print The Products And Start Selling"
+				}
+			}
+		},
+		"2": {
+			"title": "Become A Knot Distributor",
+			"subtitle": "Join a big network of Knot distributors, and start printing products.",
+			"cta": "Join Us"
+		},
+		"features": {
+			"0": {
+				"title": "Connections",
+				"subtitle": "With Connections feature:\n effortlessly add your favorite profiles with a single click. Once connected, all of the contact information is saved on your device. It's networking made easy!"
+			},
+			"1": {
+				"title": "Custom Links",
+				"subtitle": "Introducing KNOT custom links, your gateway to limitless possibilities! With the power of the Knot Custom links, you have the freedom to effortlessly add custom links of any website or any product you want."
+			},
+			"2": {
+				"title": "Direct Links",
+				"subtitle": "Direct link allows you to effortlessly redirect your valued customers, friends, and followers to your preferred online destinations, boosting your online presence like never before.With Direct Links, you can now showcase your social media accounts, website, favorite products, or any custom links in an instant. No more waiting for profiles to load or searching for the perfect link to share. Simply share your personalized Direct Link, and your audience will be redirected to the desired destination with a single tap"
+			}
+		},
+		"videos": {
+			"0": {
+				"title": "Unboxing KNOT Digital Card"
+			},
+			"1": {
+				"title": "Metal card ( Quick Look )"
+			},
+			"2": {
+				"title": "How It Works"
+			}
+		}
+
+	},
+	"footer": {
+		"actions": {
+			"contact-us": "Contact Us"
+		}
+	}
+}
