@@ -1,4 +1,4 @@
-import { usersDelete, useUsersFindAll } from '../../api/users/users';
+import { usersDelete, useUsersFindAll } from '../../../api/users/users';
 import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -9,15 +9,15 @@ import { amber, green, red } from '@mui/material/colors';
 import { DrawerPage, generatePath } from '@components/base-page.type';
 import BadgeIcon from '@mui/icons-material/Badge';
 import { useGuard } from '@hooks/useUser';
-import AuthPage, { AuthPageOptions } from '@pages/auth';
+import AuthPage, { AuthPageOptions } from '@pages/auth/auth.page';
 import { useLayout, useLayoutTitleEffect } from '@components/layout/context';
 import {
 	useEnterprisesFindOne,
 	useEnterprisesUnlinkEmployee,
 	useEnterprisesUpdate,
-} from '../../api/enterprises/enterprises';
+} from '../../../api/enterprises/enterprises';
 import { useStateLogger } from '@hooks/useStateLogger';
-import { EditProfilePage } from '@pages/employees/edit-profile.page';
+import { EditProfilePage } from '@pages/enterprise/employees/edit-profile.page';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 import { Title } from '@components/title';
@@ -253,5 +253,5 @@ EmployeesPage.icon = <BadgeIcon />;
 EmployeesPage.labelKey = 'employees';
 EmployeesPage.fallbackLabel = 'Employees';
 
-EmployeesPage.route = '/dashboard/employees';
+EmployeesPage.route = '/enterprise/employees';
 EmployeesPage.generatePath = generatePath(EmployeesPage.route);

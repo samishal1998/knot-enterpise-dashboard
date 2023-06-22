@@ -1,0 +1,57 @@
+{
+	"distributors": {
+		"tables.main.columns": {
+			"id": {
+				"title": "الرقم التعريفي"
+			},
+			"fullName": {
+				"title": "الاسم"
+			},
+			"email": {
+				"title": "البريد الالكتروني"
+			},
+			"phone": {
+				"title": "رقم التليفون"
+			},
+			"products": {
+				"title": "عدد المنتجات"
+			},
+			"approved": {
+				"title": "تم قبول الاشتراك"
+			},
+			"active-subscription": {
+				"title": "الاشتراك الفعال"
+			},
+			"actions": {
+				"title": "إجراءات"
+			}
+		}
+	},
+	"products": {
+		"tables": {
+			"main": {
+				"columns": {
+					"id": {
+						"title": "الرقم التعريفي"
+					},
+					"serial-number": {
+						"title": "الرقم التسلسلي"
+					},
+					"distributor-id": {
+						"title": "رقم معرف الموزع"
+					},
+					"label": {
+						"title": "العنوان"
+					},
+					"paid": {
+						"title": "مدفوع"
+					},
+					"actions": {
+						"title": "الاجراءات"
+					}
+				}
+			}
+		}
+	}
+
+}

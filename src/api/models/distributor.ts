@@ -8,10 +8,14 @@
 import type { DistributorCount } from './distributorCount';
 import type { Product } from './product';
 import type { User } from './user';
+import type { SubscriptionEntity } from './subscriptionEntity';
 
 export interface Distributor {
   id: string;
   _count?: DistributorCount;
+  approved?: boolean;
   products?: Product[];
   users?: User[];
+  name?: string;
+  subscriptions?: SubscriptionEntity[];
 }

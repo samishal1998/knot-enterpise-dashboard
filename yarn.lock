@@ -3200,6 +3200,11 @@ is-negative-zero@^2.0.2:
   resolved "https://registry.yarnpkg.com/is-negative-zero/-/is-negative-zero-2.0.2.tgz#7bf6f03a28003b8b3965de3ac26f664d765f3150"
   integrity sha512-dqJvarLawXsFbNDeJW7zAz8ItJ9cd28YufuuFzh0G8pNHjJMnY08Dv7sYX2uF5UpQOwieAeOExEYAWWfu7ZZUA==
 
+is-node@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/is-node/-/is-node-1.0.2.tgz#d7d002745ef7debbb7477e988956ab0a4fccb653"
+  integrity sha512-U37UdVWHNH1wDFmlSauKRDL1nhaCVRIH1FoaZN94eGJvU832sjMHEO/4AITAkOT0aRD7oA1Fovn7PeNCHiqz0w==
+
 is-number-object@^1.0.4:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/is-number-object/-/is-number-object-1.0.7.tgz#59d50ada4c45251784e9904f5246c742f07a42fc"
@@ -3825,6 +3830,11 @@ npm-run-all@^4.1.5:
     read-pkg "^3.0.0"
     shell-quote "^1.6.1"
     string.prototype.padend "^3.0.0"
+
+numerous@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/numerous/-/numerous-1.0.3.tgz#f62aeef2e7853deff09d1af1e147b096194e46fe"
+  integrity sha512-jN2WTpfdMmR1d5ClpYguln+XAvgW7B0te6wlsyaZhyev7E2CyOmvXq5LTIV/p9mt9WrPW9Xw1g5+28iZh8BhFQ==
 
 object-assign@^4, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
@@ -5089,6 +5099,14 @@ thenify-all@^1.0.0:
   integrity sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==
   dependencies:
     any-promise "^1.0.0"
+
+time-delta@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/time-delta/-/time-delta-1.0.0.tgz#9487f8c45a0697f1c3dc7884106867055e2c9f4f"
+  integrity sha512-9Njh4IxFsKileZFMTQ01ci1Mt7HlfkkgGSNSsvo2psvSqUedqSDdxS18gI7C9kSjeJ8FSkD4ekA2w5bOZCnu7g==
+  dependencies:
+    is-node "^1.0.2"
+    numerous "^1.0.3"
 
 timer2@1.0.0:
   version "1.0.0"

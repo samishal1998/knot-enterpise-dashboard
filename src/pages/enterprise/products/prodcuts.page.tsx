@@ -5,7 +5,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import LinkOffIcon from '@mui/icons-material/LinkOff';
 import { amber, blue, green, red } from '@mui/material/colors';
-import { useProductsFindAll } from '../../api/products/products';
+import { useProductsFindAll } from '../../../api/products/products';
 import LinkIcon from '@mui/icons-material/Link';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -13,9 +13,9 @@ import { DrawerPage, generatePath } from '@components/base-page.type';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import { useLayout, useLayoutTitleEffect } from '@components/layout/context';
 import { useGuard } from '@hooks/useUser';
-import AuthPage, { AuthPageOptions } from '@pages/auth';
-import { useEnterprisesFindOne } from '../../api/enterprises/enterprises';
-import { userProductsUnlinkProduct } from '../../api/user-products/user-products';
+import AuthPage, { AuthPageOptions } from '@pages/auth/auth.page';
+import { useEnterprisesFindOne } from '../../../api/enterprises/enterprises';
+import { userProductsUnlinkProduct } from '../../../api/user-products/user-products';
 import { UnlinkProductActionCell } from '@components/products/unlink-product-action-cell';
 import { useTranslation } from 'react-i18next';
 
@@ -26,7 +26,7 @@ import { Avatar, IconButton, ListItemAvatar } from '@mui/material';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { getPublicImageUrlFromPath } from '@utils/firebase/storage-helpers';
-import { EditProfilePage } from '@pages/employees/edit-profile.page';
+import { EditProfilePage } from '@pages/enterprise/employees/edit-profile.page';
 import _ from 'lodash';
 import { productShortId } from '@pages/distributor/qr/qr-list.page';
 
@@ -34,7 +34,7 @@ export const ProductsPage: DrawerPage = () => {
 	const { user } = useGuard({ defaultRedirect: AuthPage.generatePath({ page: AuthPageOptions.SIGN_IN }) });
 	const query = useEnterprisesFindOne(
 		user?.enterpriseAccess?.enterpriseId ?? '',
-		{ include: JSON.stringify({ products: { include: { owner: true, QR: true } } }) },
+		{ include: JSON.stringify({ products: { include: { owner: true, qr: true } } }) },
 		{ query: { enabled: !!user?.enterpriseAccess?.enterpriseId } },
 	);
 
@@ -44,7 +44,7 @@ export const ProductsPage: DrawerPage = () => {
 	const columns: GridColDef[] = useMemo(() => {
 		return [
 			{
-				field: 'QR',
+				field: 'qr',
 				headerName: t('product_number'),
 				minWidth: 100,
 				flex: 2,
@@ -200,5 +200,5 @@ export const ProductsPage: DrawerPage = () => {
 ProductsPage.icon = <ShoppingBagIcon />;
 ProductsPage.labelKey = 'products';
 ProductsPage.fallbackLabel = 'Products';
-ProductsPage.route = '/dashboard/products';
+ProductsPage.route = '/enterprise/products';
 ProductsPage.generatePath = generatePath(ProductsPage.route);

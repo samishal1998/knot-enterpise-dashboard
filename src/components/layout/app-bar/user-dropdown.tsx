@@ -1,22 +1,23 @@
 import * as React from 'react';
-import {useMemo} from 'react';
+import { useMemo } from 'react';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import {green, grey} from '@mui/material/colors';
-import {Divider, Link} from '@mui/material';
-import {useTranslation} from 'react-i18next';
-import {fireAuth} from '@utils/firebase';
-import {signOut} from '@firebase/auth';
-import {bindMenu, bindTrigger, usePopupState} from 'material-ui-popup-state/hooks';
-import {AccountCircleOutlined} from '@mui/icons-material';
+import { green, grey } from '@mui/material/colors';
+import { Divider, Link } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { fireAuth } from '@utils/firebase';
+import { signOut } from '@firebase/auth';
+import { bindMenu, bindTrigger, usePopupState } from 'material-ui-popup-state/hooks';
+import { AccountCircleOutlined } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import Color from 'color';
-import {User} from "../../../api/models";
-import {useSnackbar} from "react-mui-snackbar-helper";
-import {useNavigate} from "react-router-dom";
-import {AccountSettingsPage} from "@pages/dashboard/account";
-import AuthPage, {AuthPageOptions} from "@pages/auth";
+import { User } from '../../../api/models';
+import { useSnackbar } from 'react-mui-snackbar-helper';
+import { useNavigate } from 'react-router-dom';
+import { AccountSettingsPage } from '@pages/dashboard/account';
+import AuthPage, { AuthPageOptions } from '@pages/auth/auth.page';
+import ManageSubscriptionPage from '@pages/dashboard/account/manage-subscription.page';
 
 // let sx = {
 // 	background:Color(green[400]).alpha(0.3).hsl().toString(),
@@ -55,8 +56,8 @@ export default function UserDropdown({
 	// const { t, i18n } = useTranslation(ns);
 	let { showErrorMessage, showSuccessMessage } = useSnackbar();
 	const userPopupState = usePopupState({ variant: 'popper', popupId: 'user' });
-	const navigate = useNavigate()
-	const {t} = useTranslation(['main'])
+	const navigate = useNavigate();
+	const { t } = useTranslation(['main']);
 	let iconProps = useMemo(() => {
 		switch (page) {
 			case 'dashboard':
@@ -71,10 +72,10 @@ export default function UserDropdown({
 		userPopupState.close();
 		signOut(fireAuth)
 			.then(() => {
-				showSuccessMessage(t('signedOut.successMessage'));
-				navigate(AuthPage.generatePath({page:AuthPageOptions.SIGN_IN}));
+				showSuccessMessage(t('main:signedOut.successMessage'));
+				navigate(AuthPage.generatePath({ page: AuthPageOptions.SIGN_IN }));
 			})
-			.catch(() => showErrorMessage(t('signedOut.failureMessage')));
+			.catch(() => showErrorMessage(t('main:signedOut.failureMessage')));
 	};
 
 	return (
@@ -111,15 +112,19 @@ export default function UserDropdown({
 					horizontal: 'right',
 				}}
 				{...bindMenu(userPopupState)}>
-					<Link href={AccountSettingsPage.generatePath()} >
-						<a>
-							<MenuItem>{t('myAccount')}</MenuItem>
-						</a>
-					</Link>
-
+				<Link href={AccountSettingsPage.generatePath()}>
+					<a>
+						<MenuItem>{t('main:myAccount')}</MenuItem>
+					</a>
+				</Link>
+				<Link href={ManageSubscriptionPage.generatePath()}>
+					<a>
+						<MenuItem>{t('main:subscriptions')}</MenuItem>
+					</a>
+				</Link>
 
 				<Divider />
-				<MenuItem onClick={handleSignOut}>{t('signOut')}</MenuItem>
+				<MenuItem onClick={handleSignOut}>{t('main:signOut')}</MenuItem>
 			</Menu>
 		</>
 	);

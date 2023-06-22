@@ -44,7 +44,21 @@
 	},
 	"forms": {
 		"generate-qr-external": {
+			"summary": {
+				"total-price-message": "The Total Price is {{price}} {{currency}}"
+			},
 			"fields": {
+				"type": {
+					"label": "Type",
+					"options": {
+						"existing": {
+							"label": "An Existing Knot Product"
+						},
+						"new": {
+							"label": "A New Product"
+						}
+					}
+				},
 				"label": {
 					"label": "Label"
 				},
@@ -58,32 +72,33 @@
 				}
 			}
 		}
-	},	"sections": {
-	"printing-instructions": {
-		"header": "Printing GuideLines",
-		"list": {
-			"0": {
-				"title": "Contrast and Colour",
-				"subtitle": "For Better results, try to print dark colours on light backgrounds. better contrast will result in improved scanning results"
-			},
-			"1": {
-				"title": "Size and Dimensions",
-				"subtitle": "The Recommended size for the generated QR is `3.0 cm`. If your design requires smaller sizes then You should experiment with the smallest size you can get away with while the qr is still scanable"
-			}
-		}
 	},
-	"generation-instructions": {
-		"header": "Generating GuideLines",
-		"list": {
-			"0": {
-				"title": "ID",
-				"subtitle": "If you're generating a QR for a Knot Product, then write down the ID on the product in the ID form field. Otherwise, leave it empty"
-			},
-			"1": {
-				"title": "Label",
-				"subtitle": "This is an optional field, thought it's recommended that you fill it.\n This will help distinguish the products you generate later on in the table."
+	"sections": {
+		"printing-instructions": {
+			"header": "Printing GuideLines",
+			"list": {
+				"0": {
+					"title": "Contrast and Colour",
+					"subtitle": "For Better results, try to print dark colours on light backgrounds. better contrast will result in improved scanning results"
+				},
+				"1": {
+					"title": "Size and Dimensions",
+					"subtitle": "The Recommended size for the generated QR is `3.0 cm`. If your design requires smaller sizes then You should experiment with the smallest size you can get away with while the qr is still scanable"
+				}
+			}
+		},
+		"generation-instructions": {
+			"header": "Generating GuideLines",
+			"list": {
+				"0": {
+					"title": "ID",
+					"subtitle": "If you're generating a QR for a Knot Product, then write down the ID on the product in the ID form field. Otherwise, leave it empty"
+				},
+				"1": {
+					"title": "Label",
+					"subtitle": "This is an optional field, thought it's recommended that you fill it.\n This will help distinguish the products you generate later on in the table."
+				}
 			}
 		}
 	}
-}
 }

@@ -9,6 +9,7 @@ import type { CreateProductDtoType } from './createProductDtoType';
 
 export interface CreateProductDto {
   uuid: string;
-  qrUuid: string;
+  qrUuid?: string;
+  forKnot: boolean;
   type: CreateProductDtoType;
 }

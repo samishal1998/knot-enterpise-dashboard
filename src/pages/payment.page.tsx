@@ -2,12 +2,13 @@ import { BasePageType, generatePath } from '@components/base-page.type';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useMemo, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { useDistributorsConfirmPayment } from '../api/default/default';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useDistributorsConfirmPayment } from '../api/distributors/distributors';
 import { entries } from 'lodash';
 import Box from '@mui/material/Box';
 import { CircularProgress } from '@mui/material';
 import { AxiosResponse } from 'axios';
+import QrListPage from '@pages/distributor/qr/qr-list.page';
 
 const PaymentPage: BasePageType = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -16,9 +17,14 @@ const PaymentPage: BasePageType = () => {
 
 	const { mutateAsync, isLoading, data, error } = useDistributorsConfirmPayment();
 
+	const navigate = useNavigate();
 	useEffect(() => {
 		if (Object.keys(params).length) {
-			mutateAsync({ data: params });
+			mutateAsync({ data: params }).finally(() => {
+				setTimeout(() => {
+					navigate(QrListPage.generatePath());
+				}, 2000);
+			});
 		}
 	}, [params]);
 

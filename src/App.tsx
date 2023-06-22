@@ -1,5 +1,5 @@
 import MyAdmin from './admin';
-import Layout from './components/layout';
+import Layout from '@components/layout/_layout';
 import { KNOT_COMPANY_DASHBOARD_THEME } from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';

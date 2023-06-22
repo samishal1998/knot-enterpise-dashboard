@@ -311,6 +311,8 @@
 	},
 
 	"distributor": "موزع",
+	"distributors": "موزعون",
+	"admin": "ادارة",
 	"enterprise": "شركات",
 	"pages": {
 		"qr-list": {
@@ -321,5 +323,9 @@
 			"title": "انشاء رمز Qr"
 		}
 	},
-	"linkedEmployee": "الموظف الموصول"
+	"linkedEmployee": "الموظف الموصول",
+	"subscriptions": "إدارة الاشتراكات",
+	"homepage": "الصفحة الرئيسيه",
+	"howItWorks": "كيف تعمل",
+	"settings": "الاعدادت"
 }

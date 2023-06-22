@@ -1,0 +1,67 @@
+{
+	"pages": {
+		"manage-subscription": {
+			"title": "Manage Subscription"
+		}
+	},
+	"sections": {
+		"activation": {
+			"title": "Subscription Activation",
+			"cta": {
+				"activate-now": "Activate Now"
+			},
+
+			"explanation": {
+				"message": "You need an active subscription, in order to be able to generate QRs for new products"
+			},
+			"confirm": {
+				"limited-time-offer": {
+					"message": "For a limited time."
+				},
+				"total-price": {
+					"message": "The total price is <1>{{price}} {{currency}}</1>"
+				}
+			}
+		},
+		"remaining-days": {
+			"title": "Remaining Days",
+			"fields": {
+				"remaining-days": {
+					"label": "Remaining"
+				}
+			}
+		},
+		"details": {
+			"title": "Subscription Details",
+			"fields": {
+				"id": {
+					"label": "ID"
+				},
+				"created-at": {
+					"label": "Created At"
+				},
+				"duration": {
+					"label": "Duration"
+				},
+				"active": {
+					"label": "Active"
+				},
+				"price": {
+					"label": "Price"
+				},
+				"payment-id": {
+					"label": "Payment Id"
+				}
+			}
+		}
+	},
+	"alerts": {
+		"expiring-soon": {
+			"message": "Subscription expiring in {{duration}} days."
+		},
+		"expired": {
+			"message": "Your subscription has expired. Please renew your subscription."
+		}
+	}
+}
+

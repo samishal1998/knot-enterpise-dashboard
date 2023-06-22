@@ -11,7 +11,9 @@ import { LoadingContent, LoadingPaper } from '@components/LoadingContent';
 import { GuardType, useGuard } from '@hooks/useUser';
 import { Helmet } from 'react-helmet';
 import { useSnackbar } from 'react-mui-snackbar-helper';
-import { BasePageType, generatePath } from '@components/base-page.type';
+import { BasePageType, DrawerPage, generatePath } from '@components/base-page.type';
+import { KeyRounded, SupervisedUserCircleRounded } from '@mui/icons-material';
+import ManageSubscriptionPage from '@pages/dashboard/account/manage-subscription.page';
 
 const validationSchema = (t) => {
 	return yup.object().shape({
@@ -31,7 +33,7 @@ const validationSchema = (t) => {
 	});
 };
 
-export const ManageAuthenticationPage: BasePageType = () => {
+export const ManageAuthenticationPage: DrawerPage = () => {
 	const { shouldRender } = useGuard({ guardType: GuardType.USER_ONLY }, true);
 	const { t, i18n } = useTranslation(['main']);
 	const navigate = useNavigate();
@@ -132,5 +134,7 @@ export const ManageAuthenticationPage: BasePageType = () => {
 
 ManageAuthenticationPage.route = '/dashboard/account/manage-authentication';
 ManageAuthenticationPage.generatePath = generatePath(ManageAuthenticationPage.route);
-
+ManageAuthenticationPage.icon = <KeyRounded />;
+ManageAuthenticationPage.labelKey = 'main:authentication';
+ManageAuthenticationPage.fallbackLabel = 'Authentication';
 export default ManageAuthenticationPage;

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { FormikConfig, useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
-import AuthPage, { AuthPageOptions } from '../../pages/auth';
+import AuthPage, { AuthPageOptions } from '@pages/auth/auth.page';
 import { FormControl, FormHelperText, InputLabel, Link, Select, Tab, Tabs, TextField } from '@mui/material';
 import { PasswordInput } from '@components/forms/password-input';
 import { LoadingButton } from '@mui/lab';
@@ -13,7 +13,7 @@ import { TabPanel } from '@components/tabs/tab-panel';
 import { fireAuth } from '@utils/firebase';
 import MenuItem from '@mui/material/MenuItem';
 import { UserType } from '../../api/models';
-import { distributorsCreate } from '../../api/default/default';
+import { distributorsCreate } from '../../api/distributors/distributors';
 import { useSnackbar } from 'react-mui-snackbar-helper';
 import { useNavigate } from 'react-router-dom';
 

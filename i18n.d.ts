@@ -6,12 +6,15 @@ import metafield from 'public/locales/en/metafield.json';
 import auth from 'public/locales/en/auth.json';
 import landing from 'public/locales/en/landing.json';
 import qr from 'public/locales/en/qr.json';
+import subscription from 'public/locales/en/subscription.json';
+import currency from 'public/locales/en/currency.json';
+import admin from 'public/locales/en/admin.json';
 
 // import the original type declarations
 import 'react-i18next';
 
 // export default i18next;
-export type namespace = 'main' | 'employees' | 'link' | 'linkSection' | 'metafield' | 'auth' | 'landing'|'qr'
+export type namespace = 'main' | 'employees' | 'link' | 'linkSection' | 'metafield' | 'auth' | 'landing'|'qr'|"subscription"|"currency"|"admin"
 export declare module 'react-i18next' {
 	// Extend CustomTypeOptions
 	export interface CustomTypeOptions {
@@ -27,7 +30,10 @@ export declare module 'react-i18next' {
 			metafield: typeof metafield;
 			auth: typeof auth;
 			landing: typeof landing;
+			subscription: typeof subscription;
 			qr: typeof qr;
+			currency: typeof currency;
+			admin: typeof admin;
 		};
 		// other
 	}

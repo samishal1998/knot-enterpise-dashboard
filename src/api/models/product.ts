@@ -10,13 +10,13 @@ import type { ProductType } from './productType';
 import type { User } from './user';
 import type { Enterprise } from './enterprise';
 import type { Distributor } from './distributor';
-import type { Payment } from './payment';
+import type { PaymentEntity } from './paymentEntity';
 
 export interface Product {
   id?: string;
   uuid: string;
   qrUuid: string;
-  QR?: Qr;
+  qr?: Qr;
   type?: ProductType;
   activated?: boolean;
   label?: string;
@@ -26,7 +26,7 @@ export interface Product {
   enterprise?: Enterprise;
   generatedBy?: Distributor;
   generatedById?: string;
-  payment?: Payment;
+  payment?: PaymentEntity;
   paymentFinalized?: boolean;
   paymentId?: string;
 }

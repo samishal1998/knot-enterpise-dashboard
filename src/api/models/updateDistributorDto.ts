@@ -5,12 +5,7 @@
  * API DOCS
  * OpenAPI spec version: 1.0
  */
-import type { PartialCreateUserDto } from './partialCreateUserDto';
 
 export interface UpdateDistributorDto {
-  distributorName?: string;
-  userId?: string;
-  email?: string;
-  password?: string;
-  createUser?: PartialCreateUserDto;
+  name?: string;
 }

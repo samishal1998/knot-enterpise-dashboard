@@ -32,7 +32,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import '@components/auth/loginStyles.css';
 import { useSnackbar } from 'react-mui-snackbar-helper';
 import { User } from '../../api/models';
-import { EmployeesPage } from '@pages/employees';
+import { EmployeesPage } from '@pages/enterprise/employees/employees.page';
 import { usersFindOne, usersFindOneByFirebaseUid } from '../../api/users/users';
 import '@components/auth/loginStyles.css';
 

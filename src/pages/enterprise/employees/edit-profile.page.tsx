@@ -1,4 +1,4 @@
-import { usersUpdate, useUsersFindOne } from '../../api/users/users';
+import { usersUpdate, useUsersFindOne } from '../../../api/users/users';
 import Box from '@mui/material/Box';
 import React, { ChangeEvent, MouseEvent, useCallback, useEffect, useRef, useState } from 'react';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -17,7 +17,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { FormikHelpers, useFormik } from 'formik';
-import { Link, LinkCategory, User, UserLinksCategories } from '../../api/models';
+import { Link, LinkCategory, User, UserLinksCategories } from '../../../api/models';
 import { useParams } from 'react-router-dom';
 import { BasePageType, generatePath } from '@components/base-page.type';
 import { LoadingButton } from '@mui/lab';
@@ -38,13 +38,13 @@ import { getPublicImageUrlFromPath } from '@utils/firebase/storage-helpers';
 import { AxiosResponse } from 'axios';
 import { useTranslation } from 'react-i18next';
 
-import { userLinksDeleteLink, userLinksDisableLink, userLinksEnableLink } from '../../api/user-links/user-links';
+import { userLinksDeleteLink, userLinksDisableLink, userLinksEnableLink } from '../../../api/user-links/user-links';
 import { useQueryClient } from '@tanstack/react-query';
 
 import ReactFitText from 'react-fittext';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { Links } from '../../helpers/links/links';
+import { Links } from '../../../helpers/links/links';
 import { EditLinkDialog, EditLinkDialogRef } from '@components/links/edit-link-dialog';
 import { SelectLinkTypeDialog, SelectLinkTypeDialogRef } from '@components/links/select-link-type-dialog';
 
@@ -61,7 +61,7 @@ import _ from 'lodash';
 import {
 	userLinkCategoriesReorderLinksCategory,
 	useUserLinkCategoriesReorderLinksCategory,
-} from '../../api/user-link-categories/user-link-categories';
+} from '../../../api/user-link-categories/user-link-categories';
 import { FileImage } from '@components/forms/file-image';
 import { useFileInput } from '@components/forms/fields';
 
@@ -623,5 +623,5 @@ export function UserDataForm({ query }) {
 	);
 }
 
-EditProfilePage.route = '/dashboard/employees/:id/edit';
+EditProfilePage.route = '/enterprise/employees/:id/edit';
 EditProfilePage.generatePath = generatePath(EditProfilePage.route);

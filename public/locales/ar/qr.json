@@ -44,7 +44,21 @@
 	},
 	"forms": {
 		"generate-qr-external": {
+			"summary": {
+				"total-price-message": "اجمالي السعر: {{price}} {{currency}}"
+			},
 			"fields": {
+				"type": {
+					"label": "نوع الانشاء",
+					"options": {
+						"existing": {
+							"label": "منتج من Knot بـ NFC"
+						},
+						"new": {
+							"label": "منتج جديد من غير NFC"
+						}
+					}
+				},
 				"label": {
 					"label": "العنوان"
 				},

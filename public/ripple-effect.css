@@ -1,0 +1,14 @@
+span.sm-ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    --sm-ripple-final-scale: 3;
+    
+}
+
+@keyframes sm-ripple {
+    to {
+        transform: scale(var(--sm-ripple-final-scale));
+        opacity: 0;
+    }
+}

@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Title } from 'react-admin';
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Select, TextField } from '@mui/material';
 import { FormikHelpers, useFormik } from 'formik';
-import { CreateProfileDto, PrismaConnect } from '../../api/models';
+import { CreateProfileDto, PrismaConnect } from '../../../api/models';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BasePageType, generatePath } from '@components/base-page.type';
 import { LoadingButton } from '@mui/lab';
@@ -13,12 +13,12 @@ import { CameraAltRounded, Visibility, VisibilityOff } from '@mui/icons-material
 import { putFilesInFireStorage } from '@utils/firebase/storage-helpers';
 import { useTranslation } from 'react-i18next';
 import { useGuard } from '@hooks/useUser';
-import AuthPage, { AuthPageOptions } from '@pages/auth';
+import AuthPage, { AuthPageOptions } from '@pages/auth/auth.page';
 import {
 	employeesCreateProfile,
 	useEnterprisesFindOne,
 	useEnterprisesUnlinkEmployee,
-} from '../../api/enterprises/enterprises';
+} from '../../../api/enterprises/enterprises';
 import { LoadingContent } from '@components/LoadingContent';
 import { FileImage } from '@components/forms/file-image';
 import { bindFileInputElement, useFileInput } from '@components/forms/fields';
@@ -26,7 +26,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import * as yup from 'yup';
 import 'yup-phone';
-import { EmployeesPage } from '@pages/employees/index';
+import { EmployeesPage } from '@pages/enterprise/employees/employees.page';
 
 export type FormModelType = Partial<CreateProfileDto> & { product?: string };
 
@@ -253,8 +253,8 @@ export function UserDataForm({ enterprise }) {
 									style={{ width: '3rem', height: '3rem' }}
 									src={`/assets/products/${product.type.toLowerCase()}.png`}
 								/>
-								{product.QR?.number
-									? 'P' + product.QR?.number.toString(16).padStart(4, '0')
+								{product.qr?.number
+									? 'P' + product.qr?.number.toString(16).padStart(4, '0')
 									: product.id}
 							</MenuItem>
 						))}
@@ -292,5 +292,5 @@ export function UserDataForm({ enterprise }) {
 	);
 }
 
-CreateProfilePage.route = '/dashboard/employees/create';
+CreateProfilePage.route = '/enterprise/employees/create';
 CreateProfilePage.generatePath = generatePath(CreateProfilePage.route);

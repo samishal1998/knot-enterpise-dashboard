@@ -1,0 +1,60 @@
+{
+	"distributors": {
+		"tables": {
+			"main": {
+				"columns": {
+					"id": {
+						"title": "ID"
+					},
+					"fullName": {
+						"title": "Name"
+					},
+					"email": {
+						"title": "Email"
+					},
+					"phone": {
+						"title": "Phone Number"
+					},
+					"products": {
+						"title": "# of Products"
+					},
+					"approved": {
+						"title": "Approved"
+					},
+					"active-subscription": {
+						"title": "Active Subscription"
+					},
+					"actions": {
+						"title": "Actions"
+					}
+				}
+			}
+		}
+	},
+	"products": {
+		"tables": {
+			"main": {
+				"columns": {
+					"id": {
+						"title": "ID"
+					},
+					"serial-number": {
+						"title": "Serial Number"
+					},
+					"distributor-id": {
+						"title": "Distributor ID"
+					},
+					"label": {
+						"title": "Label"
+					},
+					"paid": {
+						"title": "Paid"
+					},
+					"actions": {
+						"title": "Actions"
+					}
+				}
+			}
+		}
+	}
+}

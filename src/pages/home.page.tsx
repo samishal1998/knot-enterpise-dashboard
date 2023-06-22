@@ -17,14 +17,14 @@ import {
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import { useTranslation } from 'react-i18next';
-import AuthPage, { AuthPageOptions } from './auth/index';
+import AuthPage, { AuthPageOptions } from './auth/auth.page';
 import '@styles/landing.scss';
 import '@styles/Home.module.css';
 import { BasePageType, generatePath } from '@components/base-page.type';
 import { UserType } from '../api/models';
 import { useLocation, useNavigate } from 'react-router-dom';
 import QrListPage from '@pages/distributor/qr/qr-list.page';
-import { EmployeesPage } from './employees';
+import { EmployeesPage } from './enterprise/employees/employees.page';
 import clsx from 'clsx';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -46,6 +46,11 @@ const Home: BasePageType = () => {
 			document.querySelector('header')?.classList.toggle('sticky-header', window.scrollY > 0);
 			setScrollY(window.scrollY);
 		});
+		if (window.location.href.includes('#videos')) {
+			setTimeout(() => {
+				document.getElementById('videos')?.scrollIntoView({ behavior: 'smooth' });
+			}, 1500);
+		}
 	}, []);
 	let toTop = scrollY === 0;
 
@@ -57,6 +62,10 @@ const Home: BasePageType = () => {
 			<Helmet>
 				<title>{t('knot')}</title>
 			</Helmet>
+
+			<section className={'announcement bg-green-900 text-white font-semibold text-lg text-center py-2'}>
+				{t('landing:announcement.message')}
+			</section>
 			<header className={clsx(!toTop && 'shadow-xl ')}>
 				<img className="logo" src={'/assets/logo.png'} alt={'logo'} />
 
@@ -162,7 +171,7 @@ const Home: BasePageType = () => {
 											paddingX: '1.5rem',
 											marginY: 'auto',
 											display: {
-												xs: 'none',
+												// xs: 'none',
 												md: 'flex',
 											},
 										}}
@@ -229,17 +238,21 @@ const Home: BasePageType = () => {
 					</div>
 				)}
 			</header>
-
-			<div id="banner" className="banner" style={{ background: '#f0fcf0' }}>
-				<div className="flex flex-row-reverse items-center max-w-screen-2xl h-screen justify-between  mx-auto pt-40">
-					<div className="bg-green-100 rounded-2xl z-[6] max-w-screen-md h-4/5  max-h-fit overflow-hidden">
-						<img src={'/assets/landing/banner.jpg'} className={'w-full h-full object-cover'} />
-					</div>
-					<Paper className="description bg-white p-10 text-center items-center justify-center flex flex-col">
-						<img src={'/assets/logo.png'} className={' object-cover mx-auto py-10'} />
+			<div id="banner" className="banner" dir={'rtl'}>
+				<div className="flex flex-row-reverse flex-wrap items-center max-w-screen-2xl h-screen justify-between  mx-auto pt-40">
+					{/*<div className="bg-green-100 rounded-2xl hidden md:block z-[6] max-w-screen-md h-4/5  max-h-fit overflow-hidden">*/}
+					{/*	<img src={'/assets/landing/banner.jpg'} className={'w-full h-full object-cover'} />*/}
+					{/*</div>*/}
+					{/*<div className="bg-green-100 rounded-2xl hidden md:block z-[6] max-w-screen-md h-4/5  max-h-fit overflow-hidden">*/}
+					{/*	<img src={'/assets/landing/banner.jpg'} className={'w-full h-full object-cover'} />*/}
+					{/*</div>*/}
+					<Paper className="description hidden md:flex bg-white p-10 text-center items-center justify-center flex-col max-w-[40%] ">
+						<img src={'/assets/logo.png'} className={' object-cover mx-auto py-2 lg:py-10'} />
 
 						<div className="title">{t('landing:banners.main.title')}</div>
-						<div className="subtitle text-gray-600 py-5 text-xl">{t('landing:banners.main.subtitle')}</div>
+						<div className="subtitle text-gray-600 py-5 text-xl hidden lg:block">
+							{t('landing:banners.main.subtitle')}
+						</div>
 
 						<Button
 							className={'w-fit text-xl'}
@@ -319,6 +332,7 @@ const Home: BasePageType = () => {
 						</div>
 					</div>
 				</section>
+				<DownloadSection />
 			</main>
 			<footer about="Footer">
 				<div id="footer" className="footer section flex flex-col py-5 mx-auto">
@@ -407,27 +421,54 @@ const VideosSection = () => {
 
 	return (
 		<>
-			<div
+			<section
+				id={'videos'}
 				className={
-					'flex flex-row justify-evenly items- py-10 text-3xl font-semibold text-gray-700 text-center max-w-screen-2xl mx-auto '
+					'grid grid-cols-1 md:grid-cols-2 -xl:grid-cols-3 justify-evenly gap-y-10 gap-x-20 py-10 text-3xl font-semibold text-gray-700 text-center max-w-screen-xl mx-auto'
 				}>
-				<div className={'flex flex-col justify-start items-center'}>
+				<div className={'flex flex-col justify-between items-center h-full'}>
 					<h3 className={'py-2'}>{t('landing:sections.videos.2.title')}</h3>
-					<iframe src="https://www.youtube.com/embed/YfR-foMvV2o" className="landing-video" />
+					<iframe src="https://youtube.com/embed/65Zk36HCie8" className="landing-video h-[67vh]" />
 				</div>
 
-				<div className={'flex flex-col justify-start items-center'}>
+				<div className={'flex flex-col justify-between items-center h-full'}>
 					<h3 className={'py-2'}>{t('landing:sections.videos.1.title')}</h3>
-					<iframe src="https://www.youtube.com/embed/EWxwjEAdYbY" className="landing-video" />
+					<iframe src="https://youtube.com/embed/S1fHqclBtFE" className="landing-video  h-[67vh]" />
+					{/*<div className={'bg-black h-full'}>x</div>*/}
 				</div>
 
-				<div className={'flex flex-col justify-start items-center'}>
-					<h3 className={'py-2'}>{t('landing:sections.videos.0.title')}</h3>
-					<iframe className="landing-video" src="https://youtube.com/embed/8yAz_9bGVNg" />
-				</div>
-			</div>
+				{/*<div className={'flex flex-col justify-start items-center'}>*/}
+				{/*	<h3 className={'py-2'}>{t('landing:sections.videos.0.title')}</h3>*/}
+				{/*	<iframe className="landing-video" src="https://youtube.com/embed/8yAz_9bGVNg" />*/}
+				{/*</div>*/}
+			</section>
 		</>
 	);
+
+	// return (
+	// 	<>
+	// 		<section
+	// 			id={'videos'}
+	// 			className={
+	// 				'flex flex-col lg:flex-row justify-evenly items- py-10 text-3xl font-semibold text-gray-700 text-center max-w-screen-2xl mx-auto '
+	// 			}>
+	// 			<div className={'flex flex-col justify-start items-center'}>
+	// 				<h3 className={'py-2'}>{t('landing:sections.videos.2.title')}</h3>
+	// 				<iframe src="https://youtube.com/embed/65Zk36HCie8" className="landing-video" />
+	// 			</div>
+	//
+	// 			<div className={'flex flex-col justify-start items-center'}>
+	// 				<h3 className={'py-2'}>{t('landing:sections.videos.1.title')}</h3>
+	// 				<iframe src="https://youtube.com/embed/S1fHqclBtFE" className="landing-video" />
+	// 			</div>
+	//
+	// 			{/*<div className={'flex flex-col justify-start items-center'}>*/}
+	// 			{/*	<h3 className={'py-2'}>{t('landing:sections.videos.0.title')}</h3>*/}
+	// 			{/*	<iframe className="landing-video" src="https://youtube.com/embed/8yAz_9bGVNg" />*/}
+	// 			{/*</div>*/}
+	// 		</section>
+	// 	</>
+	// );
 };
 
 const SlidesSection = () => {
@@ -515,8 +556,12 @@ const FeaturesSection = () => {
 		<div className={'flex flex-col gap-10  max-w-screen-2xl mx-auto'}>
 			{[0, 1, 2].map((key) => {
 				return (
-					<div key={key} className={'grid grid-cols-2 justify-evenly items-center gap-5'}>
-						<div className={'flex flex-col text-black text-center text-2xl'}>
+					<div key={key} className={`grid gird-cols-1 lg:grid-cols-2 justify-evenly items-center gap-5 `}>
+						<div
+							className={clsx(
+								`flex flex-col text-black text-center text-2xl`,
+								key % 2 ? 'lg:order-2' : 'lg-order-1',
+							)}>
 							<h1 className={'text-4xl font-semibold'}>
 								{icons[key]}
 								<br />
@@ -527,13 +572,48 @@ const FeaturesSection = () => {
 						</div>
 
 						<div
-							className={' bg-green-100 rounded-2xl max-h-[600px] p-10 h-full'}
-							style={{ order: -1 * (key % 2) }}>
+							className={clsx(
+								` bg-green-100 rounded-2xl max-h-[600px] p-10 h-full `,
+								key % 2 ? 'lg:order-1' : 'lg-order-2',
+							)}
+							// style={{ order: -1 * (key % 2) }}
+						>
 							<img src={images[key]} loading="lazy" className={'object-contain mx-auto h-full'} />
 						</div>
 					</div>
 				);
 			})}
+		</div>
+	);
+};
+
+const DownloadSection = () => {
+	return (
+		<div>
+			<div
+				className={
+					'flex flex-col bg-[#222522] rounded-xl max-w-screen-xl mx-auto items-center justify-center p-20 gap-10 my-20'
+				}>
+				<h3 className={'text-4xl font-semibold'}>Download Our App Now</h3>
+
+				<div className={'grid grid-cols-1 lg:grid-cols-2 gap-10'}>
+					<a href="https://play.google.com/store/apps/details?id=com.knot.knot" target="_blank">
+						<img
+							src="https://cdn.shopify.com/s/files/1/0756/9165/5444/t/3/assets/googleplay-1683114580087.png?v=1683114583"
+							loading="lazy"
+							className={'w-full'}
+						/>
+					</a>
+
+					<a href="https://apps.apple.com/eg/app/knot-digital-business-card/id1666190259" target="_blank">
+						<img
+							src="https://cdn.shopify.com/s/files/1/0756/9165/5444/t/3/assets/appstore-1683114580085.png?v=1683114581"
+							loading="lazy"
+							className={'w-full'}
+						/>
+					</a>
+				</div>
+			</div>
 		</div>
 	);
 };

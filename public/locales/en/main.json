@@ -317,6 +317,8 @@
 	},
 
 	"distributor": "Distributor",
+	"distributors": "Distributors",
+	"admin": "Admin",
 	"enterprise": "Enterprise",
 	"pages": {
 		"qr-list": {
@@ -327,6 +329,9 @@
 			"title": "Generate Qr"
 		}
 	},
-
+	"subscriptions": "Subscriptions",
+	"homepage": "Home Page",
+	"settings": "Settings",
+	"howItWorks": "How it Works",
 	"trail": "trail"
 }

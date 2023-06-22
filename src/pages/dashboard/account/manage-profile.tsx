@@ -29,9 +29,6 @@ let validationSchema = (t) => {
 	return yup.object().shape({
 		name: yup.string().required().label(t('name')),
 		url: yup.string().url().label(t('url')),
-		//firstName: yup.string().required().label(t('firstName')),
-		// lastName: yup.string().required().label(t('lastName')),
-		// birthday: yup.date().required().label(t('birthday')),
 	});
 };
 
@@ -87,9 +84,6 @@ export const ManageProfilePage: BasePageType = () => {
 		() => ({
 			name: user?.enterpriseAccess?.enterprise?.name ?? ' ',
 			url: user?.enterpriseAccess?.enterprise?.url ?? ' ',
-			// firstName: user?.firstName ?? ' ',
-			// lastName: user?.lastName ?? ' ',
-			// birthday: moment(user?.birthday ?? new Date()),
 		}),
 		[user],
 	);

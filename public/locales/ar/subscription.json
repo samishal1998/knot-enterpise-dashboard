@@ -1,0 +1,67 @@
+{
+	"pages": {
+		"manage-subscription": {
+			"title": "إدارة الاشتراكات"
+		}
+	},
+	"sections": {
+		"activation": {
+			"title": "تفعيل الاشتراك",
+			"cta": {
+				"activate-now": "فعّل الآن"
+			},
+			"explanation": {
+				"message": "تفعيل الاشتراك ضروري لتتمكن من انشاء منتجات جديدة"
+			},
+
+			"confirm": {
+				"limited-time-offer": {
+					"message": "و لفترة محدودة"
+				},
+				"total-price": {
+					"message": "اجمالي السعر:  <1>{{price}} {{currency}}</1>"
+				}
+			}
+		},
+		"remaining-days": {
+			"title": "الأيام المتبقية",
+			"fields": {
+				"remaining-days": {
+					"label": "متبقي"
+				}
+			}
+		},
+		"details": {
+			"title": "تفاصيل الاشتراك",
+			"fields": {
+				"id": {
+					"label": "رقم المعرف"
+				},
+				"created-at": {
+					"label": "أنشئت في"
+				},
+				"duration": {
+					"label": "مدة"
+				},
+				"active": {
+					"label": "نشط"
+				},
+				"price": {
+					"label": "سعر"
+				},
+				"payment-id": {
+					"label": "رقم معرف الدفع"
+				}
+			}
+		}
+	},
+	"alerts": {
+		"expiring-soon": {
+			"message": "ينتهي الاشتراك في غضون {{duration}} يوم."
+		},
+		"expired": {
+			"message": "انتهت صلاحية اشتراكك. الرجاء تجديد اشتراكك."
+		}
+	}
+}
+

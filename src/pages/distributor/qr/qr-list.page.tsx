@@ -1,6 +1,8 @@
 import { DrawerPage, generatePath } from '@components/base-page.type';
 import {
+	ArrowDownwardRounded,
 	Download,
+	ExpandMoreRounded,
 	PersonAddAlt1Rounded,
 	PriceChangeRounded,
 	PriceCheckRounded,
@@ -8,18 +10,34 @@ import {
 	QrCodeScannerRounded,
 	ShoppingCart,
 } from '@mui/icons-material';
-import { ProductsPage } from '@pages/products';
+import { ProductsPage } from '@pages/enterprise/products/prodcuts.page';
 import clsx from 'clsx';
-import { Avatar, Button, Card, CircularProgress, Dialog, Link, ListItemAvatar, TextField } from '@mui/material';
+import {
+	Accordion,
+	AccordionDetails,
+	AccordionSummary,
+	Avatar,
+	Button,
+	Card,
+	CircularProgress,
+	Dialog,
+	Link,
+	ListItemAvatar,
+	TextField,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { GuardType, useGuard } from '@hooks/useUser';
 import { LoadingButton } from '@mui/lab';
-import { distributorsPayProduct, useDistributorsGetGeneratedProducts } from '../../../api/default/default';
+import {
+	distributorsPayProduct,
+	useDistributorsGetGeneratedProducts,
+	useDistributorsGetMe,
+} from '../../../api/distributors/distributors';
 import { DataGrid, GridActionsCell, GridActionsCellItem, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import React, { useCallback, useMemo, useState } from 'react';
 import ListItem from '@mui/material/ListItem';
-import { EditProfilePage } from '@pages/employees/edit-profile.page';
+import { EditProfilePage } from '@pages/enterprise/employees/edit-profile.page';
 import { getPublicImageUrlFromPath } from '@utils/firebase/storage-helpers';
 import ListItemText from '@mui/material/ListItemText';
 import LinkOffIcon from '@mui/icons-material/LinkOff';
@@ -35,13 +53,15 @@ import { GridActionsCellItemProps } from '@mui/x-data-grid/components/cell/GridA
 
 import { addLocaleToGrid } from '@utils/i18n/add-locale-to-grid';
 import { Qr } from '@components/Qr';
-import GenerateQrPage from '@pages/distributor/qr/generate/generate-qr.page';
+import GenerateQrPage, { PrintingInstructionsSection } from '@pages/distributor/qr/generate/generate-qr.page';
 import { useNavigate } from 'react-router-dom';
+import { SubscriptionActivationAlert } from '@components/subscription/subscription-card';
+import { PAYMENT_DEFAULT_IFRAME, PaymentIframes } from '@utils/payment';
 
 export function productShortId(product: Product) {
 	return (
 		'P' +
-		_.chunk(product.QR?.shortId?.toString(16).padStart(12, '0'), 4)
+		_.chunk(product.qr?.shortId?.toString(16).padStart(12, '0'), 4)
 			.map((a) => a.join(''))
 			.join('-')
 	);
@@ -56,7 +76,12 @@ const QrListPage: DrawerPage = () => {
 	const [loading, setLoading] = useState(false);
 	const [downloadQr, setDownloadQr] = useState<{ content: string; name: string }>();
 	const { t, i18n } = useTranslation(['qr', 'main']);
-
+	const distributorQuery = useDistributorsGetMe({
+		query: { enabled: !!user?.distributorId },
+	});
+	const distributor = useMemo(() => distributorQuery?.data?.data, [distributorQuery.data?.data]);
+	const subscriptions = useMemo(() => distributor?.subscriptions, [distributor?.subscriptions]);
+	const activeSubscription = useMemo(() => subscriptions?.[0], [subscriptions]);
 	const query = useDistributorsGetGeneratedProducts(user?.distributorId ?? '', {
 		query: {
 			enabled: !!user?.distributorId,
@@ -183,7 +208,7 @@ const QrListPage: DrawerPage = () => {
 
 	const handleRequestProducts = useCallback(() => {
 		window.open(
-			'https://wa.me/201064944985?text=I%27m%20interested%20in%20buying%20more%20product%20for%20printing',
+			'https://myknot.co/products/plain-plastic-card', //'https://wa.me/201064944985?text=I%27m%20interested%20in%20buying%20more%20product%20for%20printing',
 		);
 	}, []);
 
@@ -193,8 +218,8 @@ const QrListPage: DrawerPage = () => {
 			<>
 				<Dialog
 					open={loading || !!downloadQr || !!paymentKey}
-					fullWidth={!!paymentKey}
-					classes={{ paper: clsx(!!paymentKey && '!max-w-screen-2xl !w-full') }}
+					fullWidth={!!paymentKey || !!downloadQr}
+					classes={{ paper: clsx((!!paymentKey || !!downloadQr) && '!max-w-screen-2xl !w-full') }}
 					onClose={
 						loading
 							? undefined
@@ -208,15 +233,28 @@ const QrListPage: DrawerPage = () => {
 						</Box>
 					)}
 					{downloadQr && (
-						<div className={'p-10'}>
+						<div className={'p-10 flex flex-col items-center justify-center'}>
 							<Qr {...downloadQr} />
+							<Accordion
+								variant={'outlined'}
+								sx={{ borderRadius: 1, '::before': { display: 'none' } }}
+								disableGutters={true}>
+								<AccordionSummary expandIcon={<ExpandMoreRounded />}>
+									<h2 className={'text-gray-500 text-2xl font-semibold py-2'}>
+										{t('qr:sections.printing-instructions.header')}
+									</h2>
+								</AccordionSummary>
+								<AccordionDetails>
+									<PrintingInstructionsSection showHeader={false} />
+								</AccordionDetails>
+							</Accordion>
 						</div>
 					)}
 					{paymentKey && (
 						<iframe
 							height={900}
 							width={'100%'}
-							src={`https://accept.paymob.com/api/acceptance/iframes/760829?payment_token=${paymentKey}`}
+							src={PaymentIframes[PAYMENT_DEFAULT_IFRAME].generateUrl({ paymentKey })}
 						/>
 					)}
 				</Dialog>
@@ -224,6 +262,15 @@ const QrListPage: DrawerPage = () => {
 
 				<LoadingPaper isLoading={query.isLoading}>
 					<div className={'pt-10 h-full gap-2 flex flex-col items-stretch justify-start'}>
+						{activeSubscription && user && (
+							<div className={'w-full py-5 '}>
+								<SubscriptionActivationAlert
+									subscription={activeSubscription}
+									user={{ ...user, distributor }}
+									showOnlyIfExpired
+								/>
+							</div>
+						)}
 						<div>
 							<Button
 								startIcon={<QrCodeScannerRounded />}

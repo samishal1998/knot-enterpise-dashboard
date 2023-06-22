@@ -10,7 +10,7 @@ import { Box, Button, Link, Tab, Tabs, TextField } from '@mui/material';
 import { RecaptchaVerifier } from 'firebase/auth';
 import { fireAuth as firebaseAuth } from '../../utils/firebase';
 import { useTranslation } from 'react-i18next';
-import AuthPage, { AuthPageOptions } from '../../pages/auth';
+import AuthPage, { AuthPageOptions } from '@pages/auth/auth.page';
 import { AuthType } from '@components/auth/auth-type';
 import { TabPanel } from '@components/tabs/tab-panel';
 
@@ -64,19 +64,17 @@ function SignIn({ signInCallback, loading }) {
 	return (
 		<>
 			<form autoComplete="on" onSubmit={handleSignIn} className={'flex flex-col'}>
-				{
-					phoneAuth && emailAuth &&
-
-				<Tabs
-					value={authType}
-					onChange={handleChangeTab}
-					aria-label="basic tabs example"
-					centered
-					variant={'fullWidth'}>
-					<Tab icon={<MailOutlineIcon />} value={AuthType.EMAIL} />
-					<Tab icon={<PhoneOutlinedIcon />} value={AuthType.PHONE} />
-				</Tabs>
-				}
+				{phoneAuth && emailAuth && (
+					<Tabs
+						value={authType}
+						onChange={handleChangeTab}
+						aria-label="basic tabs example"
+						centered
+						variant={'fullWidth'}>
+						<Tab icon={<MailOutlineIcon />} value={AuthType.EMAIL} />
+						<Tab icon={<PhoneOutlinedIcon />} value={AuthType.PHONE} />
+					</Tabs>
+				)}
 				<TabPanel value={authType} index={AuthType.EMAIL}>
 					<TextField
 						name="email"
@@ -131,7 +129,6 @@ function SignIn({ signInCallback, loading }) {
 				<Button variant={'contained'} disabled={loading} type="submit" id={'signIn'}>
 					{loading ? (
 						<>
-
 							{/*// @ts-ignore*/}
 							<FontAwesomeIcon icon={faCircleNotch} spin={true} /> loading
 						</>

@@ -8,7 +8,19 @@ i18n.use(Backend)
 	.use(initReactI18next)
 	.init({
 		defaultNS: 'main',
-		ns: ['main', 'employees', 'link', 'linkSection', 'metafield', 'auth', 'landing', 'qr'],
+		ns: [
+			'main',
+			'employees',
+			'link',
+			'linkSection',
+			'metafield',
+			'auth',
+			'landing',
+			'qr',
+			'subscription',
+			'currency',
+			'admin',
+		],
 		backend: {
 			loadPath: '/locales/{{lng}}/{{ns}}.json',
 		},
